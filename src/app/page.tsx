@@ -1,11 +1,9 @@
 import Nav from "@/components/Nav";
 import Image from "next/image";
 
-
 export default function Home() {
   return (
-    <div className="font-sans ">
-      <Nav />
+    <div className="font-sans">
       <Image
         src="/images/hero.jpg"
         alt="Hero Image"

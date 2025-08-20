@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import "./globals.css";
 
 import Client from "@/components/Client";
+import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
   title: "AVEGA",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
+        <Nav />
         <Client>{children}</Client>
       </body>
     </html>
