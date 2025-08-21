@@ -45,6 +45,7 @@ export default function Home() {
         <div className="text-4xl">Your Logistics, Your Way</div>
         <div className="flex flex-col gap-5">
           <Card variant={"default"} />
+          <Card variant={"default"} />
           <div></div>
         </div>
       </div>

@@ -7,10 +7,6 @@
   --font-sans: "Neue Haas Grotesk Display Pro", sans-serif;
 }
 
-body {
-  font-family: var(--font-sans);
-}
-
 @theme {
   /* modular scale tokens */
   --text-xs: 11.52px; /* 18 / 1.25 / 1.25 */
@@ -35,4 +31,9 @@ body {
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 32px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #fafafa;
 }

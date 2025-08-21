@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Chip from "./Chip";
+import Button from "./Button";
 
 interface CardProps {
   variant: "default";
@@ -24,12 +25,20 @@ const Card = ({ variant }: CardProps) => {
             Follows the ICHS procedure that transports goods from the initial
             storage to the destination.
           </div>
-          <div className="py-8 flex flex-wrap text-lg">
-            <Chip variant={"default"} />
-            <Chip variant={"default"} />
-            <Chip variant={"default"} />
-            <Chip variant={"default"} />
+          <div className="py-8 flex flex-wrap text-lg gap-3">
+            <Chip text="Warehouse Pickup" icon="1" />
+            <Chip text="Port Transfer & Handling" icon="2" />
+            <Chip text="Nationwide Shipping" icon="3" />
+            <Chip text="Regional Delivery" icon="4" />
+            <Chip text="Warehouse Management" icon="5" />
           </div>
+          <Button
+            color="red"
+            size="medium"
+            classN="text-lg font-semibold"
+            children={"More about ICHS"}
+            link={"/services"}
+          />
         </div>
       </div>
     </>
