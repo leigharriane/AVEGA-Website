@@ -2,13 +2,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --background: #ffffff;
+  --foreground: #171717; */
   --font-sans: "Neue Haas Grotesk Display Pro", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+@theme {
+  /* modular scale tokens */
+  --text-xs: 11.52px; /* 18 / 1.25 / 1.25 */
+  --text-sm: 14.4px; /* 18 / 1.25 */
+  --text-base: 18px; /* base */
+  --text-lg: 22.5px; /* 18 * 1.25 */
+  --text-xl: 28.125px; /* 18 * 1.25^2 */
+  --text-2xl: 35.156px; /* 18 * 1.25^3 */
+  --text-3xl: 43.945px; /* 18 * 1.25^4 */
+  --text-4xl: 54.93px; /* 18 * 1.25^5 */
+
+  --color-white: #fafafa;
+  --color-red: #f00;
+  --color-darkRed: #d80000;
+  --color-lightestGray: #efefef;
+  --color-lighterGray: #bfbfbf;
+  --color-lightGray: #787878;
+  --color-black: #171717;
+  --color-gradient: linear-gradient(94deg, #a30101 33.33%, #f00 100%);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
 }

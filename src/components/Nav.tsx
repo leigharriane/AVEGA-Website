@@ -12,18 +12,11 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Nav() {
   const navRef = React.useRef<HTMLElement | null>(null);
   const divRef = React.useRef<HTMLDivElement | null>(null);
-  const spacerRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useLayoutEffect(() => {
-    if (!navRef.current || !spacerRef.current) return;
+    if (!navRef.current) return;
 
-    const setSpacer = () => {
-      const h = navRef.current!.getBoundingClientRect().height;
-      spacerRef.current!.style.height = `${h}px`;
-    };
-    setSpacer();
-
-    const st = ScrollTrigger.create({
+    ScrollTrigger.create({
       start: 80,
       end: 999999,
       onEnter: () => {
@@ -32,16 +25,15 @@ export default function Nav() {
         divRef.current?.classList.remove(
           "bg-transparent",
           "text-white",
-          "rounded-0"
+          "rounded-none"
         );
         divRef.current?.classList.add(
           "bg-white",
           "text-black",
-          "rounded-[16px]",
+          "rounded-md",
           "border-[1px]",
-          "border-[#BFBFBF]"
+          "border-lighterGray"
         );
-        setSpacer();
       },
       onLeaveBack: () => {
         navRef.current?.classList.remove("py-5", "px-20");
@@ -49,24 +41,17 @@ export default function Nav() {
         divRef.current?.classList.remove(
           "bg-white",
           "text-black",
-          "rounded-[16px]",
+          "rounded-md",
           "border-[1px]",
-          "border-[#BFBFBF]"
+          "border-lighterGray"
         );
         divRef.current?.classList.add(
           "bg-transparent",
           "text-white",
-          "rounded-0"
+          "rounded-none"
         );
-        setSpacer();
       },
     });
-
-    window.addEventListener("resize", setSpacer);
-    return () => {
-      st.kill();
-      window.removeEventListener("resize", setSpacer);
-    };
   }, []);
 
   return (
@@ -77,16 +62,16 @@ export default function Nav() {
       >
         <div
           ref={divRef}
-          className="w-full p-5 flex flex-row items-center justify-between bg-transparent text-white rounded-0"
+          className="w-full p-5 flex flex-row items-center justify-between bg-transparent text-white rounded-none"
         >
           <Image
             src="/images/logo.png"
             alt="Logo"
             width={1100}
             height={800}
-            className="w-[3.5625rem] h-[2.59094rem] object-cover rounded-lg transition-all duration-300"
+            className="w-[3.5625rem] h-[2.59094rem] object-cover rounded-sm transition-all duration-300"
           />
-          <div className="flex flex-row items-center justify-between gap-[2.5rem] font-medium text-[1.25rem] transition-all duration-300">
+          <div className="flex flex-row items-center justify-between gap-[2.5rem] font-medium text-base transition-all duration-300">
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
             <Link href="/about">Services</Link>
@@ -97,13 +82,12 @@ export default function Nav() {
             link="#Contact"
             size="small"
             color="red"
-            classN="text-[0.875rem] font-semibold"
+            classN="text-base font-semibold"
           >
             Contact Us
           </Button>
         </div>
       </nav>
-      <div ref={spacerRef} aria-hidden />
     </>
   );
 }
