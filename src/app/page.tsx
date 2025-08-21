@@ -44,8 +44,8 @@ export default function Home() {
       <div className="px-20 flex flex-col gap-10">
         <div className="text-4xl">Your Logistics, Your Way</div>
         <div className="flex flex-col gap-5">
-          <Card variant={"default"} />
-          <Card variant={"default"} />
+          <Card />
+          <Card />
           <div></div>
         </div>
       </div>

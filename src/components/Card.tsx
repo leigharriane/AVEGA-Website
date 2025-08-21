@@ -1,14 +1,11 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Chip from "./Chip";
 import Button from "./Button";
 
-interface CardProps {
-  variant: "default";
-}
+interface CardProps {}
 
-const Card = ({ variant }: CardProps) => {
+const Card = ({}: CardProps) => {
   return (
     <>
       <div className="rounded-md border-[1px] border-lighterGray p-8 flex flex-row gap-5">
@@ -36,9 +33,10 @@ const Card = ({ variant }: CardProps) => {
             color="red"
             size="medium"
             classN="text-lg font-semibold"
-            children={"More about ICHS"}
             link={"/services"}
-          />
+          >
+            More about ICHS
+          </Button>
         </div>
       </div>
     </>
