@@ -6,7 +6,7 @@ export default function ShippingIcon(props: React.SVGProps<SVGSVGElement>) {
       height="100%"
       viewBox="0 0 24 24"
       fill="none"
-      className="fill-black"
+      className="!stroke-none transition-all duration-300 ease-out"
     >
       <path
         fillRule="evenodd"

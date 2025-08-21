@@ -5,21 +5,21 @@ export default function TruckingIcon(props: React.SVGProps<SVGSVGElement>) {
       width="100%"
       height="100%"
       viewBox="0 0 24 24"
-      className="fill-transparent"
+      className="!fill-transparent transition-all duration-300 ease-out"
     >
       <path
         d="M5 17.5C5 18.0304 5.21071 18.5391 5.58579 18.9142C5.96086 19.2893 6.46957 19.5 7 19.5C7.53043 19.5 8.03914 19.2893 8.41421 18.9142C8.78929 18.5391 9 18.0304 9 17.5C9 16.9696 8.78929 16.4609 8.41421 16.0858C8.03914 15.7107 7.53043 15.5 7 15.5C6.46957 15.5 5.96086 15.7107 5.58579 16.0858C5.21071 16.4609 5 16.9696 5 17.5ZM15 17.5C15 18.0304 15.2107 18.5391 15.5858 18.9142C15.9609 19.2893 16.4696 19.5 17 19.5C17.5304 19.5 18.0391 19.2893 18.4142 18.9142C18.7893 18.5391 19 18.0304 19 17.5C19 16.9696 18.7893 16.4609 18.4142 16.0858C18.0391 15.7107 17.5304 15.5 17 15.5C16.4696 15.5 15.9609 15.7107 15.5858 16.0858C15.2107 16.4609 15 16.9696 15 17.5Z"
-        stroke="#171717"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        // stroke="#171717"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M5 17.5H3V6.5C3 6.23478 3.10536 5.98043 3.29289 5.79289C3.48043 5.60536 3.73478 5.5 4 5.5H13V17.5M9 17.5H15M19 17.5H21V11.5M21 11.5H13M21 11.5L18 6.5H13"
-        stroke="#171717"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        // stroke="#171717"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
