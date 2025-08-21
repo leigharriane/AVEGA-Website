@@ -7,7 +7,7 @@ export default function Home() {
     <div className="flex flex-col gap-20">
       <div className="relative flex">
         <Image
-          src="/images/hero.jpg"
+          src="/images/hero.png"
           alt="Hero Image"
           width={1920}
           height={1080}
@@ -24,17 +24,17 @@ export default function Home() {
           <div className="flex flex-row gap-5">
             <Button
               link="/about"
-              size="medium"
+              size="small"
               color="white"
-              classN="text-lg font-semibold"
+              classN="text-base font-semibold"
             >
               Learn Our Story
             </Button>
             <Button
               link="/about"
-              size="medium"
+              size="small"
               color="red"
-              classN="text-lg font-semibold"
+              classN="text-base font-semibold"
             >
               Talk to Our Team
             </Button>
@@ -44,8 +44,8 @@ export default function Home() {
       <div className="px-20 flex flex-col gap-10">
         <div className="text-4xl">Your Logistics, Your Way</div>
         <div className="flex flex-col gap-5">
-          <Card />
-          <Card />
+          <Card variant="firstHome" />
+          <Card variant="secondHome" />
           <div></div>
         </div>
       </div>
