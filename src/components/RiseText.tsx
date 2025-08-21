@@ -2,18 +2,22 @@
 
 import React, { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 type RiseTextProps = {
   text: string;
-  className?: string;         // custom classes for the outer wrapper
+  className?: string;
   delay?: number;
   duration?: number;
   y?: number;
   stagger?: number;
   replayOnHover?: boolean;
-  mark?: boolean;             // wrap the entire text in <mark>
-  markText?: string | RegExp | Array<string | RegExp>; // highlight matches
-  markClassName?: string;     // classes for <mark>
+  start?: string;
+  once?: boolean;
+  mark?: boolean;
+  markText?: string | RegExp | Array<string | RegExp>;
+  markClassName?: string;
 };
 
 export default function RiseText({
@@ -24,6 +28,8 @@ export default function RiseText({
   y = 24,
   stagger = 0.04,
   replayOnHover = false,
+  start = "top 85%",
+  once = true,
   mark = false,
   markText,
   markClassName = "",
@@ -34,7 +40,15 @@ export default function RiseText({
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const letters = gsap.utils.toArray<HTMLElement>("[data-char]");
-      tlRef.current = gsap.timeline({ delay });
+      tlRef.current = gsap.timeline({
+        delay,
+        scrollTrigger: {
+          trigger: elRef.current!,
+          start,
+          toggleActions: once ? "play none none none" : "play none none reverse",
+          ...(once ? { once: true } : {}),
+        },
+      });
       tlRef.current.from(letters, {
         y,
         opacity: 0,
@@ -44,60 +58,25 @@ export default function RiseText({
       });
     }, elRef);
     return () => ctx.revert();
-  }, [text, delay, duration, y, stagger]);
+  }, [text, delay, duration, y, stagger, start, once]);
 
-  // helpers
+  // --- marking helpers ---
   const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-  const buildRegex = (
-    value: string | RegExp | Array<string | RegExp>
-  ): RegExp | null => {
+  const buildRegex = (value: string | RegExp | Array<string | RegExp> | undefined) => {
     if (!value) return null;
     const arr = Array.isArray(value) ? value : [value];
-    const sources = arr.map((v) =>
-      v instanceof RegExp ? v.source : escapeRegExp(v)
-    );
-    // default to global, case-insensitive
+    const sources = arr.map((v) => (v instanceof RegExp ? v.source : escapeRegExp(v)));
     return new RegExp(`(${sources.join("|")})`, "gi");
   };
+  const regex = mark ? null : buildRegex(markText);
 
-  // break the text into segments, marking any matches
-  const segmentText = (
-    full: string,
-    regex: RegExp | null
-  ): Array<{ text: string; marked: boolean }> => {
-    if (!regex) return [{ text: full, marked: false }];
-
-    const segments: Array<{ text: string; marked: boolean }> = [];
-    let lastIndex = 0;
-
-    for (const m of full.matchAll(regex)) {
-      const start = m.index ?? 0;
-      const end = start + m[0].length;
-
-      if (start > lastIndex) {
-        segments.push({ text: full.slice(lastIndex, start), marked: false });
-      }
-      segments.push({ text: full.slice(start, end), marked: true });
-      lastIndex = end;
-    }
-
-    if (lastIndex < full.length) {
-      segments.push({ text: full.slice(lastIndex), marked: false });
-    }
-
-    return segments;
-  };
-
-  const regex = mark ? null : (markText !== undefined && markText !== null ? buildRegex(markText) : null);
-  const segments = mark
-    ? [{ text, marked: true }]
-    : segmentText(text, regex);
-
-  // render a string as letter spans
+  // Split into tokens that preserve spaces
+  const tokens = text.split(/(\s+)/); // keeps spaces as separate items
   let keySeed = 0;
-  const renderLetters = (t: string) =>
-    t.split("").map((ch) => (
+
+  // render a single word as a no-break unit containing letter spans
+  const renderWord = (word: string, isMarked: boolean) => {
+    const letters = word.split("").map((ch) => (
       <span
         key={`ch-${keySeed++}`}
         data-char
@@ -108,27 +87,97 @@ export default function RiseText({
       </span>
     ));
 
+    const inner = isMarked ? (
+      <mark className={markClassName} style={{ background: "transparent" }}>
+        {letters}
+      </mark>
+    ) : (
+      letters
+    );
+
+    return (
+      <span
+        key={`word-${keySeed++}`}
+        data-word
+        // This wrapper prevents line breaks within the word
+        style={{ display: "inline-block", whiteSpace: "nowrap" }}
+      >
+        {inner}
+      </span>
+    );
+  };
+
   return (
     <span
       ref={elRef}
       className={className}
       aria-label={text}
-      style={{ display: "inline-block", whiteSpace: "pre-wrap" }}
+      // allow wrapping between words; do not force one-line
+      style={{ display: "inline-block", whiteSpace: "normal" }}
       onMouseEnter={() => {
         if (replayOnHover) tlRef.current?.restart();
       }}
     >
-      {segments.map((seg, i) =>
-        seg.marked ? (
-          <mark key={`seg-${i}`} className={markClassName} style={{ background: "transparent" }}>
-            {renderLetters(seg.text)}
-          </mark>
-        ) : (
-          <span key={`seg-${i}`} style={{ display: "inline" }}>
-            {renderLetters(seg.text)}
+      {tokens.map((tok, i) => {
+        // spaces: render as-is so the browser can wrap between words
+        if (tok.match(/^\s+$/)) {
+          return <span key={`sp-${i}`}>{tok}</span>;
+        }
+
+        // words: either fully marked, partially marked, or unmarked
+        if (mark) {
+          // mark entire text: every word is marked
+          return renderWord(tok, true);
+        }
+
+        if (!regex) {
+          // no marking: simple word
+          return renderWord(tok, false);
+        }
+
+        // If marking specific matches, we may have multiple matches inside a word.
+        // Split the word by matches and wrap only matched pieces in <mark>.
+        const parts: Array<{ text: string; marked: boolean }> = [];
+        let last = 0;
+        for (const m of tok.matchAll(regex)) {
+          const start = m.index ?? 0;
+          const end = start + m[0].length;
+          if (start > last) parts.push({ text: tok.slice(last, start), marked: false });
+          parts.push({ text: tok.slice(start, end), marked: true });
+          last = end;
+        }
+        if (last < tok.length) parts.push({ text: tok.slice(last), marked: false });
+
+        // If no matches, render as plain word
+        if (parts.length === 0) return renderWord(tok, false);
+
+        // If there are matches, render the word wrapper (no-break) and mark only matched segments
+        return (
+          <span
+            key={`word-${i}`}
+            data-word
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
+          >
+            {parts.flatMap(({ text: sub, marked }) =>
+              sub.split("").map((ch) => (
+                <span key={`ch-${keySeed++}`} style={{ display: "inline-block" }}>
+                  {marked ? (
+                    <mark className={markClassName} style={{ background: "transparent" }}>
+                      <span data-char aria-hidden="true" style={{ display: "inline-block" }}>
+                        {ch}
+                      </span>
+                    </mark>
+                  ) : (
+                    <span data-char aria-hidden="true" style={{ display: "inline-block" }}>
+                      {ch}
+                    </span>
+                  )}
+                </span>
+              ))
+            )}
           </span>
-        )
-      )}
+        );
+      })}
     </span>
   );
 }

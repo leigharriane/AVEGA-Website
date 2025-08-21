@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Chip from "./Chip";
-import Button from "./Button";
-import ShippingIcon from "../../public/icons/Shipping";
-import TruckingIcon from "../../public/icons/Trucking";
-import LighterageIcon from "../../public/icons/Lighterage";
-import WarehouseIcon from "../../public/icons/Warehouse";
-import EquipmentIcon from "../../public/icons/Equipment";
+import Button from "../Button";
+import ShippingIcon from "../../../public/icons/Shipping";
+import TruckingIcon from "../../../public/icons/Trucking";
+import LighterageIcon from "../../../public/icons/Lighterage";
+import WarehouseIcon from "../../../public/icons/Warehouse";
+import EquipmentIcon from "../../../public/icons/Equipment";
 
 interface CardProps {
   variant?: "firstHome" | "secondHome";
