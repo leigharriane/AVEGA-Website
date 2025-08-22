@@ -28,7 +28,7 @@ export default function FleetBlock() {
   const shown = active && imgs[active] ? imgs[active] : defaultImg;
 
   return (
-    <div className="px-20 flex flex-row gap-10">
+    <div className="px-20 flex flex-row gap-10 w-full">
       <div className="flex flex-col gap-10">
         <RiseText
           text="A Diverse Fleet for Diverse Cargo Needs"
@@ -61,7 +61,7 @@ export default function FleetBlock() {
       </div>
 
       {/* Image that swaps on Divide hover/focus */}
-      <div className="w-1/3">
+      <div className="w-full">
         <Image
           key={shown.src} // forces a smooth re-render when src changes
           src={shown.src}
