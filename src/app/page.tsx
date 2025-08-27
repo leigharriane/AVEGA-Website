@@ -20,13 +20,13 @@ export default function Home() {
     { src: "/images/marquee-logos/3.png", alt: "la filipina" },
     { src: "/images/marquee-logos/4.png", alt: "la filipina" },
     { src: "/images/marquee-logos/5.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/6.jpg", alt: "la filipina" },
+    { src: "/images/marquee-logos/6.png", alt: "la filipina" },
     { src: "/images/marquee-logos/7.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/8.jpg", alt: "la filipina" },
+    { src: "/images/marquee-logos/8.png", alt: "la filipina" },
     { src: "/images/marquee-logos/9.png", alt: "la filipina" },
     { src: "/images/marquee-logos/10.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/11.jpg", alt: "la filipina" },
-    { src: "/images/marquee-logos/12.jpg", alt: "la filipina" },
+    { src: "/images/marquee-logos/11.png", alt: "la filipina" },
+    { src: "/images/marquee-logos/12.png", alt: "la filipina" },
   ];
 
   return (
