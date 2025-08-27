@@ -3,6 +3,7 @@ import Card from "@/components/home/Card";
 import Divide from "@/components/home/Divide";
 import FleetBlock from "@/components/home/FleetBlock";
 import LogoMarquee from "@/components/home/LogoMarquee";
+import Testimonials from "@/components/home/Testimonials";
 import RiseText from "@/components/RiseText";
 import RiseText2 from "@/components/RiseTextExp";
 import Image from "next/image";
@@ -92,6 +93,8 @@ export default function Home() {
         </div>
       </div>
       <FleetBlock />
+      <Testimonials />
+      <div></div>
       {/* <div className="px-20 flex flex-row gap-10">
         <div className="flex flex-col gap-10">
           <RiseText
