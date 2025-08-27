@@ -80,7 +80,7 @@ export default function Home() {
       <div className="px-20 flex flex-col gap-10">
         <RiseText
           text="Your Logistics, Your Way"
-          className="text-4xl"
+          className="text-3xl"
           start="top 80%"
           duration={1}
           stagger={0.02}

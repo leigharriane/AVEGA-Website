@@ -89,19 +89,19 @@ const Card = ({ variant = "firstHome" }: CardProps) => {
         alt={activeImg.alt}
         width={1920}
         height={1080}
-        className="w-5/12 object-cover min-w-[480px] h-[380px] rounded-sm"
+        className="w-5/12 object-cover min-w-[480px] h-[270px] rounded-sm"
         priority
       />
 
       {variant === "firstHome" ? (
-        <div className="flex flex-col w-full gap-3">
-          <div className="text-2xl font-bold">Full-Cycle Logistics Service</div>
-          <div className="text-lg text-lightGray">
+        <div className="flex flex-col w-full">
+          <div className="text-xl font-bold">Full-Cycle Logistics Service</div>
+          <div className="text-md text-lightGray">
             Follows the ICHS procedure that transports goods from the initial
             storage to the destination.
           </div>
 
-          <div className="py-8 flex flex-wrap gap-3">
+          <div className="py-8 flex flex-wrap gap-3 max-w-[600px]">
             {chipsFirst.map((label, i) => (
               <div
                 key={label}
@@ -126,13 +126,13 @@ const Card = ({ variant = "firstHome" }: CardProps) => {
           </Button>
         </div>
       ) : (
-        <div className="flex flex-col w-full gap-3">
-          <div className="text-2xl font-bold">Custom-Fit Cargo Services</div>
-          <div className="text-lg text-lightGray">
+        <div className="flex flex-col w-full">
+          <div className="text-xl font-bold">Custom-Fit Cargo Services</div>
+          <div className="text-md text-lightGray">
             Customize your logistic needs with any of our services
           </div>
 
-          <div className="py-8 flex flex-wrap gap-3">
+          <div className="py-8 flex flex-wrap gap-3 max-w-[500px]">
             {chipsSecond.map(({ label, icon }) => (
               <div
                 key={label}
@@ -141,7 +141,7 @@ const Card = ({ variant = "firstHome" }: CardProps) => {
                 onFocus={() => setHovered(label)}
                 onBlur={() => setHovered(null)}
               >
-                <Chip text={label} icon={icon} iconStyle="w-6 h-6" />
+                <Chip text={label} icon={icon} iconStyle="w-5 h-5" />
               </div>
             ))}
           </div>

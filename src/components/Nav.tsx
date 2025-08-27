@@ -62,7 +62,7 @@ export default function Nav() {
       >
         <div
           ref={divRef}
-          className="w-full p-5 flex flex-row items-center justify-between bg-transparent text-white rounded-none"
+          className="w-full p-3 flex flex-row items-center justify-between bg-transparent text-white rounded-none"
         >
           <Image
             src="/images/logo.png"

@@ -32,7 +32,7 @@ export default function FleetBlock() {
       <div className="flex flex-col gap-10">
         <RiseText
           text="A Diverse Fleet for Diverse Cargo Needs"
-          className="text-4xl max-w-[480px]"
+          className="text-3xl max-w-[480px]"
           start="top 80%"
           duration={1}
           stagger={0.02}
