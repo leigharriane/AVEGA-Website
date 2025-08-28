@@ -19,10 +19,10 @@ const FleetTypeToggle = ({
           <button
             key={type}
             onClick={() => onToggle(type)}
-            className={`flex items-center gap-2 px-[18px] py-[6px] leading-[100%] rounded-full text-[16px] font-medium border transition ${
+            className={`flex items-center gap-2 px-[18px] py-[6px] leading-[100%] rounded-full text-sm font-medium border transition ${
               isSelected
-                ? "bg-[#D80000] text-white border-[#D80000]"
-                : "border-gray-300 text-[#787878] hover:border-[#D80000] hover:text-[#D80000]"
+                ? "bg-red text-white border-red"
+                : "border-lighterGray text-lightGray hover:border-red hover:text-red"
             }`}
           >
             <span>

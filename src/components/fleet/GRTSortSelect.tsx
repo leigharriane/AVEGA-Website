@@ -11,14 +11,14 @@ const GRTSortSelect = ({ value, onChange }: GRTSortSelectProps) => {
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as "asc" | "desc")}
-        className="w-full appearance-none py-2.5 pl-3 pr-8 bg-white border border-gray-300 rounded-xs text-sm text-gray-600 focus:outline-none"
+        className="w-full appearance-none py-2.5 pl-3 pr-8 border border-lighterGray rounded-xs text-sm text-lightGray focus:outline-none"
       >
         <option value="asc">GRT Ascending</option>
         <option value="desc">GRT Descending</option>
       </select>
       <span className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
         <svg
-          className="h-4 w-4 text-gray-400"
+          className="h-4 w-4 text-lighterGray"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"

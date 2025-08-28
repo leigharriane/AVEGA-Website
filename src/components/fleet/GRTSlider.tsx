@@ -32,13 +32,13 @@ const GRTSlider = ({
 
   return (
     <div>
-      <div className="text-lg leading-[100%] font-[450] mb-[12px]">
+      <div className="text-base leading-[100%] font-[450] mb-2">
         {min.toLocaleString()} - {maxValue.toLocaleString()}
       </div>
       <div className="relative w-full h-6">
-        <div className="absolute top-1/2 left-0 right-0 h-1 bg-[#EFEFEF] transform -translate-y-1/2 rounded-full" />
+        <div className="absolute top-1/2 left-0 right-0 h-1 bg-lightestGray transform -translate-y-1/2 rounded-full" />
         <div
-          className="absolute top-1/2 h-1 bg-[#D80000] rounded-full transform -translate-y-1/2"
+          className="absolute top-1/2 h-1 bg-red rounded-full transform -translate-y-1/2"
           style={{
             left: `${progressLeft}%`,
             width: `${progressWidth}%`,

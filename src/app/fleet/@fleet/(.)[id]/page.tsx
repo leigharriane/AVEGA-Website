@@ -1,5 +1,5 @@
 import FleetDetails from "@/components/fleet/FleetDetails";
-import ModalWrapper from "@/components/fleet/ModalWrapper";
+import Modal from "@/components/fleet/Modal";
 import { Fleet } from "@/components/fleet/models/fleet.model";
 import { notFound } from "next/navigation";
 
@@ -32,7 +32,7 @@ const FleetModalPage = async ({ params }: FleetModalPageProps) => {
   }
 
   return (
-    <ModalWrapper>
+    <Modal>
       <FleetDetails
         id={fleet.id}
         name={fleet.name}
@@ -46,7 +46,7 @@ const FleetModalPage = async ({ params }: FleetModalPageProps) => {
         length_lbp={fleet.length_lbp}
         length_loa={fleet.length_loa}
       />
-    </ModalWrapper>
+    </Modal>
   );
 };
 
