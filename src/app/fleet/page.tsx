@@ -93,7 +93,7 @@ export default function FleetPage() {
   }, [filteredFleet]);
 
   return (
-    <div className="flex flex-col px-20 py-20">
+    <div className="flex flex-col px-5 lg:px-20 py-20">
       <div className="flex flex-col py-5">
         <RiseText
           text="Our Fleet"
