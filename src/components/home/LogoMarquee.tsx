@@ -17,7 +17,7 @@ interface LogoMarqueeProps {
 export default function LogoMarquee({
   logos,
   speed = 100,
-  gapClass = "gap-16",
+  gapClass = "gap-14",
   reverse = false,
   pauseOnHover = true,
 }: LogoMarqueeProps) {
@@ -97,7 +97,7 @@ export default function LogoMarquee({
       {/* Track — duplicated content for seamless loop */}
       <div
         ref={trackRef}
-        className={`flex ${gapClass} items-center w-max will-change-transform py-10 isolate`}
+        className={`flex ${gapClass} items-center w-max will-change-transform py-4`}
       >
         {[...logos, ...logos].map((logo, i) => (
           <Image
@@ -106,7 +106,7 @@ export default function LogoMarquee({
             alt={logo.alt ?? ""}
             width={logo.width ?? 160}
             height={logo.height ?? 64}
-            className="h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity mix-blend-multiply"
+            className="h-20 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
             priority={i < logos.length} // preload first set for faster start
           />
         ))}

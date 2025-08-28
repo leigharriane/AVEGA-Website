@@ -3,6 +3,7 @@ import Card from "@/components/home/Card";
 import Divide from "@/components/home/Divide";
 import FleetBlock from "@/components/home/FleetBlock";
 import LogoMarquee from "@/components/home/LogoMarquee";
+import Testimonials from "@/components/home/Testimonials";
 import RiseText from "@/components/RiseText";
 import RiseText2 from "@/components/RiseTextExp";
 import Image from "next/image";
@@ -20,13 +21,13 @@ export default function Home() {
     { src: "/images/marquee-logos/3.png", alt: "la filipina" },
     { src: "/images/marquee-logos/4.png", alt: "la filipina" },
     { src: "/images/marquee-logos/5.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/6.jpg", alt: "la filipina" },
+    { src: "/images/marquee-logos/6.png", alt: "la filipina" },
     { src: "/images/marquee-logos/7.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/8.jpg", alt: "la filipina" },
+    { src: "/images/marquee-logos/8.png", alt: "la filipina" },
     { src: "/images/marquee-logos/9.png", alt: "la filipina" },
     { src: "/images/marquee-logos/10.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/11.jpg", alt: "la filipina" },
-    { src: "/images/marquee-logos/12.jpg", alt: "la filipina" },
+    { src: "/images/marquee-logos/11.png", alt: "la filipina" },
+    { src: "/images/marquee-logos/12.png", alt: "la filipina" },
   ];
 
   return (
@@ -80,7 +81,7 @@ export default function Home() {
       <div className="px-20 flex flex-col gap-10">
         <RiseText
           text="Your Logistics, Your Way"
-          className="text-4xl"
+          className="text-3xl"
           start="top 80%"
           duration={1}
           stagger={0.02}
@@ -92,6 +93,8 @@ export default function Home() {
         </div>
       </div>
       <FleetBlock />
+      <Testimonials />
+      <div></div>
       {/* <div className="px-20 flex flex-row gap-10">
         <div className="flex flex-col gap-10">
           <RiseText
