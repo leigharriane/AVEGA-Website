@@ -11,6 +11,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { apiKey, apiUrl, imageUrl } from "../../../apiConfig";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +28,7 @@ export default function FleetPage() {
     const getData = async () => {
       try {
         const response = await fetch(
-          `https://api.avegabros.org/website/master-vessels?key=tMxLOAEnad9heg7fpIZWQrm2F&limit=1000&stat=1`
+          `${apiUrl}/website/master-vessels?key=${apiKey}&limit=1000&stat=1`
         );
         if (!response.ok) throw new Error("Failed to fetch fleet data");
         const { data } = await response.json();
@@ -46,7 +47,7 @@ export default function FleetPage() {
       fleetList.map((ship) => ({
         ...ship,
         grt: parseFloat(ship.gross_tonnage),
-        image: `https://abas.avegabros.org/assets/uploads/operations/vessels/${ship.photo_path}`,
+        image: `${imageUrl}/${ship.photo_path}`,
       })),
     [fleetList]
   );
