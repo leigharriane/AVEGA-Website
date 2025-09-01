@@ -2,6 +2,7 @@ import FleetDetails from "@/components/fleet/FleetDetails";
 import Modal from "@/components/fleet/Modal";
 import { Fleet } from "@/components/fleet/models/fleet.model";
 import { notFound } from "next/navigation";
+import { apiKey, apiUrl } from "../../../../../apiConfig";
 
 interface FleetModalPageProps {
   params: {
@@ -12,7 +13,7 @@ interface FleetModalPageProps {
 const getFleetById = async (id: number): Promise<Fleet | null> => {
   try {
     const response = await fetch(
-      `https://api.avegabros.org/website/master-vessels/${id}?key=tMxLOAEnad9heg7fpIZWQrm2F&`
+      `${apiUrl}/website/master-vessels/${id}?key=${apiKey}`
     );
     if (!response.ok) throw new Error("Failed to fetch fleet data");
     const { data } = await response.json();

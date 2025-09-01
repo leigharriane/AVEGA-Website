@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "@/components/Button";
+import { imageUrl } from "../../../../apiConfig";
 import { Fleet } from "../models/fleet.model";
 
 const FleetDetails = ({
@@ -19,7 +21,7 @@ const FleetDetails = ({
     window.location.href = `/fleet/${id}`;
   };
 
-  const image = `https://abas.avegabros.org/assets/uploads/operations/vessels/${photo_path}`;
+  const image = `${imageUrl}/${photo_path}`;
 
   return (
     <div className="bg-white pb-[20px] px-[40px] rounded-md w-full">
@@ -33,10 +35,8 @@ const FleetDetails = ({
         />
       </div>
       <div className="mb-5">
-        <h1 className="font-medium text-lg text-[#787878]">Cargo Ship</h1>
-        <h1 className="font-bold text-xl leading-[100%] text-black">
-          {name}
-        </h1>
+        <h1 className="font-medium text-lg text-lightGray">Cargo Ship</h1>
+        <h1 className="font-bold text-xl leading-[100%] text-black">{name}</h1>
       </div>
       <div>
         <table className="w-full border border-lighterGray">
@@ -113,7 +113,7 @@ const FleetDetails = ({
       <div className="flex justify-end">
         <button
           onClick={handleLearnMore}
-          className="bg-[#D80001] text-white text-sm font-normal py-2 px-3 rounded-2xl mt-5 cursor-pointer flex items-center"
+          className="bg-red text-white text-sm font-normal px-5 py-2.5 rounded-sm mt-5 cursor-pointer flex items-center"
         >
           Learn More
         </button>

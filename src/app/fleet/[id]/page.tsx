@@ -1,5 +1,6 @@
 import { Fleet } from "@/components/fleet/models/fleet.model";
 import { notFound } from "next/navigation";
+import { apiKey, apiUrl, imageUrl } from "../../../../apiConfig";
 
 interface FleetPageProps {
   params: {
@@ -10,7 +11,7 @@ interface FleetPageProps {
 const getFleetById = async (id: number): Promise<Fleet | null> => {
   try {
     const response = await fetch(
-      `https://api.avegabros.org/website/master-vessels/${id}?key=tMxLOAEnad9heg7fpIZWQrm2F&`
+      `${apiUrl}/website/master-vessels/${id}?key=${apiKey}`
     );
     if (!response.ok) throw new Error("Failed to fetch fleet data");
     const { data } = await response.json();
@@ -29,7 +30,7 @@ const Page = async ({ params }: FleetPageProps) => {
     notFound();
   }
 
-  const image = `https://abas.avegabros.org/assets/uploads/operations/vessels/${fleet.photo_path}`;
+  const image = `${imageUrl}/${fleet.photo_path}`;
 
   return (
     <div className="bg-white py-[20px] px-[40px] rounded-md w-full">

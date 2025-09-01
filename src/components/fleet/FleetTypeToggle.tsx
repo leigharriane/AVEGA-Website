@@ -1,5 +1,8 @@
 "use client";
 
+import CheckIcon from "../../../public/icons/Check";
+import PlusIcon from "../../../public/icons/Plus";
+
 interface FleetTypeToggleProps {
   availableTypes: string[];
   selectedTypes: string[];
@@ -25,39 +28,7 @@ const FleetTypeToggle = ({
                 : "border-lighterGray text-lightGray hover:border-red hover:text-red"
             }`}
           >
-            <span>
-              {isSelected ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M12 4v16m8-8H4"
-                  />
-                </svg>
-              )}
-            </span>
+            <span>{isSelected ? <CheckIcon /> : <PlusIcon />}</span>
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </button>
         );
