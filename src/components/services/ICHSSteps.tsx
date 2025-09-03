@@ -61,6 +61,9 @@ const ICHSSteps = () => {
   const [triangleLeft, setTriangleLeft] = useState<number | null>(null);
   const [isMd, setIsMd] = useState(false);
 
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1025px)");
     const handleChange = (event: any) => setIsMd(event.matches);
@@ -210,6 +213,55 @@ const ICHSSteps = () => {
       return () => container.removeEventListener("wheel", handleWheel);
     }
   }, [currentStep, steps.length]);
+
+  // Touch event handlers for swipe detection
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const threshold = 50; // minimum swipe distance in px
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.changedTouches[0].clientX;
+      touchEndX.current = null;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      touchEndX.current = e.changedTouches[0].clientX;
+    };
+
+    const onTouchEnd = () => {
+      if (
+        touchStartX.current !== null &&
+        touchEndX.current !== null
+      ) {
+        const distance = touchStartX.current - touchEndX.current;
+
+        if (Math.abs(distance) > threshold) {
+          if (distance > 0) {
+            // Swipe left (right to left) -> Next step
+            handleNext();
+          } else {
+            // Swipe right (left to right) -> Previous step
+            handlePrevious();
+          }
+        }
+      }
+
+      touchStartX.current = null;
+      touchEndX.current = null;
+    };
+
+    container.addEventListener("touchstart", onTouchStart);
+    container.addEventListener("touchmove", onTouchMove);
+    container.addEventListener("touchend", onTouchEnd);
+
+    return () => {
+      container.removeEventListener("touchstart", onTouchStart);
+      container.removeEventListener("touchmove", onTouchMove);
+      container.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [currentStep]);
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
