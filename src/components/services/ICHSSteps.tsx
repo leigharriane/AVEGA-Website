@@ -49,7 +49,7 @@ const steps = [
   },
 ];
 
-export function ICHSSteps() {
+const ICHSSteps = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -297,4 +297,6 @@ export function ICHSSteps() {
       </div>
     </div>
   );
-}
+};
+
+export default ICHSSteps;
