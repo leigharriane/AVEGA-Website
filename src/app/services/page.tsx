@@ -6,8 +6,8 @@ import TayloredCargoSection from "@/components/services/TayloredCargoSection";
 
 const ServicePage = () => {
   return (
-    <div className="flex flex-col gap-20 my-20">
-      <div className="px-20 flex flex-col">
+    <div className="flex flex-col gap-10 md:gap-20 my-20">
+      <div className="px-5 lg:px-20 flex flex-col">
         <div className="flex flex-col">
           <RiseText
             text="We acknowledge that every"
@@ -33,11 +33,11 @@ const ServicePage = () => {
         </div>
         <ServicesFeaturedCards />
       </div>
-      <div className="px-20 flex flex-col">
+      <div className="px-5 lg:px-20">
         <ApproachSection />
       </div>
       <div className="flex flex-col">
-        <div className="px-20 pb-10 flex flex-col">
+        <div className="px-5 lg:px-20 pb-10 flex flex-col">
           <RiseText
             text="Integrated Cargo Handling Services (ICHS)"
             className="font-medium text-3xl leading-[100%]"
@@ -55,7 +55,7 @@ const ServicePage = () => {
         </div>
         <ICHSSteps />
       </div>
-      <div className="px-20 pb-10 flex flex-col">
+      <div className="px-5 lg:px-20 pb-10 flex flex-col">
         <RiseText
           text="Tailored Cargo Services"
           className="font-medium text-3xl leading-[100%]"

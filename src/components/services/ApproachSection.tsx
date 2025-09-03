@@ -26,7 +26,7 @@ const ApproachSection = () => {
   }, []);
 
   return (
-    <div className="flex gap-20 py-10">
+    <div className="flex md:gap-20 gap-2.5 py-10 flex-col md:flex-row">
       <div
         className="font-bold text-2xl"
         style={{

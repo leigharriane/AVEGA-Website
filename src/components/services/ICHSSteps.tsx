@@ -59,6 +59,24 @@ const ICHSSteps = () => {
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isScrollingRef = useRef(false);
   const [triangleLeft, setTriangleLeft] = useState<number | null>(null);
+  const [isMd, setIsMd] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1025px)");
+    const handleChange = (event: any) => setIsMd(event.matches);
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handleChange);
+    }
+
+    setIsMd(mediaQuery.matches);
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", handleChange);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     for (let i = 0; i <= currentStep; i++) {
@@ -264,22 +282,25 @@ const ICHSSteps = () => {
         ))}
       </div>
 
-      <div className="bg-lightestGray rounded-lg p-5 mx-20 relative">
+      <div className="bg-lightestGray rounded-lg p-5 mx-5 lg:mx-20 relative">
         {triangleLeft !== null && (
           <div
             className="absolute -top-8 w-0 h-0 
-              border-l-[40px] border-l-transparent 
-              border-r-[40px] border-r-transparent 
+              border-l-[20px] lg:border-l-[40px] border-l-transparent 
+              border-r-[20px] lg:border-r-[40px] border-r-transparent 
               border-b-[40px] border-b-lightestGray 
               transition-all duration-300"
-            style={{ left: triangleLeft - 120 }}
+            style={{ left: triangleLeft - (isMd ? 120 : 40) }}
           />
         )}
 
-        <div ref={contentRef} className="flex gap-10 items-center">
+        <div
+          ref={contentRef}
+          className="flex gap-10 items-center flex-col md:flex-row"
+        >
           <img
             src={steps[currentStep].image}
-            className="w-[301px] h-[199px] rounded-md"
+            className="md:w-[301px] w-full object-cover h-[199px] rounded-md"
             alt={steps[currentStep].title}
           />
           <div className="flex flex-col gap-2.5">

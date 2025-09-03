@@ -5,7 +5,7 @@ import Image from "next/image";
 const ServicesFeaturedCards = () => {
   return (
     <div className="flex gap-5 flex-col md:flex-row mt-10">
-      <div className="p-5 w-full bg-lightestGray rounded-lg flex items-center gap-5 justify-between">
+      <div className="p-5 w-full bg-lightestGray rounded-lg flex gap-5 justify-between flex-col xl:flex-row">
         <div className="flex flex-col gap-3">
           <h1 className="font-bold text-xl  leading-[100%]">
             Integrated Cargo Handling Services (ICHS)
@@ -27,10 +27,10 @@ const ServicesFeaturedCards = () => {
           alt="wh-pickup"
           width={1920}
           height={1080}
-          className="w-5/12 object-cover min-w-[226px] h-[205px] rounded-md"
+          className="xl:w-5/12 object-cover min-w-[226px] h-[205px] rounded-md"
         ></Image>
       </div>
-      <div className="p-5 w-full bg-lightestGray rounded-lg flex items-center gap-5 justify-between">
+      <div className="p-5 w-full bg-lightestGray rounded-lg flex gap-5 justify-between flex-col xl:flex-row">
         <div className="flex flex-col gap-3">
           <h1 className="font-bold text-xl  leading-[100%]">
             Our Tailored Cargo Solutions
@@ -52,7 +52,7 @@ const ServicesFeaturedCards = () => {
           alt="wh-pickup"
           width={1920}
           height={1080}
-          className="w-5/12 object-cover min-w-[226px] h-[205px] rounded-md"
+          className="xl:w-5/12 object-cover min-w-[226px] h-[205px] rounded-md"
         ></Image>
       </div>
     </div>
