@@ -356,13 +356,13 @@ const ICHSSteps = () => {
             alt={steps[currentStep].title}
           />
           <div className="flex flex-col gap-2.5">
-            <h1 className="text-red text-xl leading-[100%] font-semibold">
+            <h1 className="text-red text-base leading-[100%] font-semibold">
               Step {steps[currentStep].id}
             </h1>
-            <span className="text-black text-3xl leading-[100%] font-semibold">
+            <span className="text-black text-2xl leading-[100%] font-semibold">
               {steps[currentStep].title}
             </span>
-            <span className="text-lightGray text-xl leading-[100%] font-medium">
+            <span className="text-lightGray text-base leading-[100%] font-medium">
               {steps[currentStep].description}
             </span>
           </div>
