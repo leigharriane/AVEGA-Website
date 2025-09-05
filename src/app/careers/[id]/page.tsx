@@ -39,6 +39,7 @@ const Page = () => {
       <div className="px-5 lg:px-20 flex flex-col">
         <CareerForm data={application}/>
       </div>
+      <div className="border-b border-lighterGray"></div>
     </div>
   );
 };

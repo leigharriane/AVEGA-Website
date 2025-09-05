@@ -94,8 +94,8 @@ export default function FleetPage() {
   }, [filteredFleet]);
 
   return (
-    <div className="flex flex-col px-5 lg:px-20 py-20">
-      <div className="flex flex-col py-5">
+    <div className="flex flex-col my-20">
+      <div className="flex flex-col py-5 px-5 lg:px-20">
         <RiseText
           text="Our Fleet"
           className="font-medium text-3xl leading-[100%]"
@@ -111,7 +111,7 @@ export default function FleetPage() {
           stagger={0.02}
         />
       </div>
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 px-5 lg:px-20 pb-10">
         {loading ? (
           <FleetFilterSkeleton />
         ) : (
@@ -193,6 +193,7 @@ export default function FleetPage() {
           )}
         </div>
       </div>
+      <div className="border-b border-lighterGray"></div>
     </div>
   );
 }

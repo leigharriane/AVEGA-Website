@@ -55,7 +55,7 @@ const ServicePage = () => {
         </div>
         <ICHSSteps />
       </div>
-      <div className="px-5 lg:px-20 pb-10 flex flex-col">
+      <div className="px-5 lg:px-20 flex flex-col">
         <RiseText
           text="Tailored Cargo Services"
           className="font-medium text-3xl leading-[100%]"
@@ -72,6 +72,7 @@ const ServicePage = () => {
         />
         <TayloredCargoSection />
       </div>
+      <div className="border-b border-lighterGray"></div>
     </div>
   );
 };

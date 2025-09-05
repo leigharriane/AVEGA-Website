@@ -32,8 +32,7 @@ const CareerPage = () => {
           <RoleForm />
         </div>
       </div>
-      <div className="px-5 lg:px-20"></div>
-      <div className="px-5 lg:px-20"></div>
+      <div className="border-b border-lighterGray"></div>
     </div>
   );
 };

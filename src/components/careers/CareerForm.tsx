@@ -66,7 +66,7 @@ const CareerForm = (application: CareerFormProps) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-10 mb-30">
+    <div className="flex flex-col lg:flex-row gap-10">
       <div className="w-full lg:w-1/3 flex flex-col gap-5">
         <div
           className="prose prose-sm max-w-none text-black [&>p]:mb-4 [&>h4]:font-medium [&>h4]:text-black [&>h4]:mt-6 [&>h4]:mb-3 [&>ul]:space-y-2 [&>ul>li]:flex [&>ul>li]:items-start [&>ul>li]:before:content-['•'] [&>ul>li]:before:text-black [&>ul>li]:before:mr-2"

@@ -4,9 +4,8 @@ import RiseText from "@/components/RiseText";
 const ContactPage = () => {
   return (
     <div className="flex flex-col gap-15 md:gap-20 my-20">
-      <div className="px-5 lg:px-20"></div>
       <div className="px-5 lg:px-20">
-        <div className="flex flex-col lg:flex-row gap-10 mb-30">
+        <div className="flex flex-col lg:flex-row gap-10">
           <div className="w-full lg:w-1/3 flex flex-col gap-5">
             <RiseText
               text="Let’s plan your shipment. What services are you looking for?"
@@ -83,8 +82,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-      <div className="px-5 lg:px-20"></div>
-      <div className="px-5 lg:px-20"></div>
+      <div className="border-b border-lighterGray"></div>
     </div>
   );
 };
