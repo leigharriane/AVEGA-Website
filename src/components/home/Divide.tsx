@@ -9,7 +9,7 @@ const Divide = ({ text, icon, iconStyle }: DivideProps) => {
   return (
     <>
   
-        <div className="w-60 inline-flex flex-col justify-start items-start gap-20">
+        <div className=" inline-flex flex-col justify-start items-start gap-14">
           <div
             className={`${iconStyle} justify-start bg-gradient-to-br from-darkRed to-red bg-clip-text text-transparent text-4xl font-medium`}
           >

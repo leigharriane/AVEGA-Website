@@ -3,6 +3,7 @@ import Card from "@/components/home/Card";
 import Divide from "@/components/home/Divide";
 import FleetBlock from "@/components/home/FleetBlock";
 import LogoMarquee from "@/components/home/LogoMarquee";
+import Testimonials from "@/components/home/Testimonials";
 import RiseText from "@/components/RiseText";
 import RiseText2 from "@/components/RiseTextExp";
 import Image from "next/image";
@@ -15,18 +16,26 @@ export default function Home() {
   ];
 
   const logos = [
-    { src: "/images/marquee-logos/1.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/2.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/3.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/4.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/5.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/6.jpg", alt: "la filipina" },
-    { src: "/images/marquee-logos/7.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/8.jpg", alt: "la filipina" },
-    { src: "/images/marquee-logos/9.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/10.png", alt: "la filipina" },
-    { src: "/images/marquee-logos/11.jpg", alt: "la filipina" },
-    { src: "/images/marquee-logos/12.jpg", alt: "la filipina" },
+    { src: "/images/marquee-logos/1.png", alt: "UNAHCO" },
+    { src: "/images/marquee-logos/2.png", alt: "La Filipina" },
+    { src: "/images/marquee-logos/3.png", alt: "Steel Asia" },
+    { src: "/images/marquee-logos/4.png", alt: "Pilmico" },
+    { src: "/images/marquee-logos/5.png", alt: "San Miguel Mills" },
+    { src: "/images/marquee-logos/6.png", alt: "San Miguel Foods" },
+    { src: "/images/marquee-logos/7.png", alt: "Cargill" },
+    { src: "/images/marquee-logos/8.png", alt: "KKC" },
+    { src: "/images/marquee-logos/9.png", alt: "Long Harbor Logistic Corporation" },
+    { src: "/images/marquee-logos/10.png", alt: "MCR Agriventure Corporation" },
+    { src: "/images/marquee-logos/11.png", alt: "Bounty" },
+    { src: "/images/marquee-logos/12.png", alt: "National Food Authority" },
+    { src: "/images/marquee-logos/13.png", alt: "Philcement" },
+    { src: "/images/marquee-logos/14.png", alt: "Alibra" },
+    { src: "/images/marquee-logos/15.png", alt: "Amigo" },
+    { src: "/images/marquee-logos/16.png", alt: "Arvin International" },
+    { src: "/images/marquee-logos/17.png", alt: "Pioneer Glass" },
+    { src: "/images/marquee-logos/18.png", alt: "ADM" },
+    { src: "/images/marquee-logos/19.png", alt: "Starport" },
+    { src: "/images/marquee-logos/20.png", alt: "Top Armada" },
   ];
 
   return (
@@ -80,7 +89,7 @@ export default function Home() {
       <div className="px-20 flex flex-col gap-10">
         <RiseText
           text="Your Logistics, Your Way"
-          className="text-4xl"
+          className="text-3xl"
           start="top 80%"
           duration={1}
           stagger={0.02}
@@ -92,6 +101,8 @@ export default function Home() {
         </div>
       </div>
       <FleetBlock />
+      <Testimonials />
+      <div className="border-b border-lighterGray"></div>
       {/* <div className="px-20 flex flex-row gap-10">
         <div className="flex flex-col gap-10">
           <RiseText

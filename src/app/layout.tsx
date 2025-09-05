@@ -3,6 +3,8 @@ import "./globals.css";
 
 import Client from "@/components/Client";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import FooterReveal from "@/components/FooterReveal";
 
 export const metadata: Metadata = {
   title: "AVEGA",
