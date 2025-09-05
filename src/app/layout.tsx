@@ -4,6 +4,7 @@ import "./globals.css";
 import Client from "@/components/Client";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import FooterReveal from "@/components/FooterReveal";
 
 export const metadata: Metadata = {
   title: "AVEGA",
@@ -20,8 +21,6 @@ export default function RootLayout({
       <body className={``}>
         <Nav />
         <Client>{children}</Client>
-        <div className="h-[100vh] relative">w</div>
-        <Footer />
       </body>
     </html>
   );

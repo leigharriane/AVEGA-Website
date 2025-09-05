@@ -5,6 +5,8 @@ import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
+import FooterReveal from "./FooterReveal";
+import Footer from "./Footer";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -26,7 +28,11 @@ export default function Client({ children }: { children: React.ReactNode }) {
   );
   return (
     <div id="smooth-wrapper">
-      <div id="smooth-content" className="bg-white">{children}</div>
+      <div id="smooth-content">
+        <div className="bg-white">{children}</div>
+        <FooterReveal />
+      </div>
+      <Footer />
     </div>
   );
 }

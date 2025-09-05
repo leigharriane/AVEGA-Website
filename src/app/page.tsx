@@ -102,7 +102,7 @@ export default function Home() {
       </div>
       <FleetBlock />
       <Testimonials />
-      <div></div>
+      <div className="border-b border-lightGray"></div>
       {/* <div className="px-20 flex flex-row gap-10">
         <div className="flex flex-col gap-10">
           <RiseText
