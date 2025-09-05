@@ -11,24 +11,22 @@ export default function Nav() {
   const divRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useLayoutEffect(() => {
-    let styleST: any = null;
-    let dirST: any = null;
-    let ST: any = null; // ScrollTrigger
+    // typed GSAP contexts (for cleanup via .revert())
+    let styleCtx: ReturnType<typeof gsap.context> | null = null;
+    let dirCtx: ReturnType<typeof gsap.context> | null = null;
 
     (async () => {
-      // Dynamic import prevents plugin timing issues under Turbopack
+      // Dynamic import avoids Turbopack timing issues
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-      ST = ScrollTrigger;
 
       if (!navRef.current) return;
 
       // 1) Compact/expanded styles once you’re ~80px down
-      styleST = gsap.context(() => {
-        ST.create({
+      styleCtx = gsap.context(() => {
+        ScrollTrigger.create({
           start: 80,
           end: 999999,
-          // IMPORTANT: don't set scroller with ScrollSmoother; default (document) works.
           onEnter: () => {
             navRef.current?.classList.remove("py-4", "px-5");
             navRef.current?.classList.add("py-5", "px-20");
@@ -67,7 +65,7 @@ export default function Nav() {
       }, navRef);
 
       // 2) Hide on scroll-down, show on scroll-up
-      const HIDE_THRESHOLD = 600; //120
+      const HIDE_THRESHOLD = 600; // adjust to taste like 120
       let hidden = false;
       gsap.set(navRef.current, { yPercent: 0 });
 
@@ -93,11 +91,11 @@ export default function Nav() {
         });
       };
 
-      dirST = gsap.context(() => {
-        ST.create({
+      dirCtx = gsap.context(() => {
+        ScrollTrigger.create({
           start: 0,
           end: 999999,
-          onUpdate: (self: { direction: number; }) => {
+          onUpdate: (self: import("gsap/ScrollTrigger").ScrollTrigger) => {
             // With ScrollSmoother, the document still scrolls; use window/document
             const scrollTop =
               window.scrollY || document.documentElement.scrollTop || 0;
@@ -119,18 +117,17 @@ export default function Nav() {
       navRef.current.addEventListener("mouseenter", onEnter);
       navRef.current.addEventListener("focusin", onEnter);
 
-      // Cleanup
+      // Cleanup listener on unmount
       return () => {
         navRef.current?.removeEventListener("mouseenter", onEnter);
         navRef.current?.removeEventListener("focusin", onEnter);
       };
     })();
 
+    // Cleanup GSAP contexts
     return () => {
-      // kill all ScrollTriggers created in contexts (if they exist)
-      styleST?.revert();
-      dirST?.revert();
-      // Optional: ST?.killAll(); // if you want to be extra safe on route changes
+      styleCtx?.revert();
+      dirCtx?.revert();
     };
   }, []);
 
