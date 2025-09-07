@@ -31,7 +31,7 @@ export default function Footer() {
     <footer
       id="fixedFooter"
       ref={ref}
-      className="fixed bottom-0 left-0 right-0 -z-20"
+      className="fixed bottom-0 left-0 right-0 -z-10"
     >
       <div className="px-20 pt-20 w-full">
         <div className="w-full flex flex-row items-start justify-between text-black">
