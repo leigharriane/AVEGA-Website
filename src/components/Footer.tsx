@@ -111,7 +111,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-lightestGray font-bold text-[15.3vw] max-h-[230px] w-full">
+      <div className="text-lightestGray font-bold text-[15.3vw] max-h-[230px]">
         AVEGA BROS.
       </div>
     </footer>
