@@ -150,12 +150,12 @@ export default function Nav() {
         <div className="flex flex-row items-center justify-between gap-[2.5rem] font-medium text-base transition-all duration-300">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
-          <Link href="/about">Services</Link>
-          <Link href="/about">Fleet</Link>
-          <Link href="/about">Careers</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/fleet">Fleet</Link>
+          <Link href="/careers">Careers</Link>
         </div>
         <Button
-          link="#Contact"
+          link="/contact"
           size="small"
           color="red"
           classN="text-base font-semibold"

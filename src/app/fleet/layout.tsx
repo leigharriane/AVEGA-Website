@@ -14,11 +14,11 @@ export default function RootLayout({
   fleet: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={``}>
+    <div lang="en">
+      <div className={``}>
         {children}
         {fleet}
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }
