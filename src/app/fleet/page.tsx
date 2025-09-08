@@ -12,6 +12,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { apiKey, apiUrl, imageUrl } from "../../../apiConfig";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -167,7 +168,9 @@ export default function FleetPage() {
                 >
                   <Link href={`/fleet/${ship.id}`}>
                     <div className="aspect-[3/2] overflow-hidden">
-                      <img
+                      <Image
+                        width={1080}
+                        height={1080}
                         src={ship.image}
                         alt={ship.name}
                         className="w-full h-full object-cover rounded-md"

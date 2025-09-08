@@ -1,19 +1,17 @@
 import Button from "@/components/Button";
 import Card from "@/components/home/Card";
-import Divide from "@/components/home/Divide";
 import FleetBlock from "@/components/home/FleetBlock";
 import LogoMarquee from "@/components/home/LogoMarquee";
 import Testimonials from "@/components/home/Testimonials";
 import RiseText from "@/components/RiseText";
-import RiseText2 from "@/components/RiseTextExp";
 import Image from "next/image";
 
 export default function Home() {
-  const stats = [
-    { value: 45, label: "Cargo Ships" },
-    { value: 9, label: "Barges" },
-    { value: 8, label: "Tugboats" },
-  ];
+  // const stats = [
+  //   { value: 45, label: "Cargo Ships" },
+  //   { value: 9, label: "Barges" },
+  //   { value: 8, label: "Tugboats" },
+  // ];
 
   const logos = [
     { src: "/images/marquee-logos/1.png", alt: "UNAHCO" },
