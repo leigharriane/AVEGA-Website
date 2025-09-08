@@ -7,7 +7,7 @@ export default function FooterReveal() {
 
   return (
     <div
-      className="relative h-[var(--footer-h,320px)] pointer-events-none"
+      className="relative h-[var(--footer-h,320px)] pointer-events-none -z-20"
       aria-hidden
     >
       {/* Match your page bg color here */}

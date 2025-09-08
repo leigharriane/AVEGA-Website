@@ -31,7 +31,7 @@ export default function Footer() {
     <footer
       id="fixedFooter"
       ref={ref}
-      className="fixed bottom-0 left-0 right-0 -z-20"
+      className="fixed bottom-0 left-0 right-0 -z-10"
     >
       <div className="px-20 pt-20 w-full">
         <div className="w-full flex flex-row items-start justify-between text-black">
@@ -44,7 +44,8 @@ export default function Footer() {
               className="w-[170px] h-[123px] object-cover rounded-xs transition-all duration-300"
             />
             <div className="text-base">
-              Copyright © 2025 AVega Bros. Integrated Shipping Corp. All Rights Reserved.
+              Copyright © 2025 AVega Bros. Integrated Shipping Corp. All Rights
+              Reserved.
             </div>
           </div>
 
@@ -64,14 +65,18 @@ export default function Footer() {
               <div className="flex flex-col gap-2.5">
                 <p className="text-base text-lightGray">MAIN OFFICE</p>
                 <div className="flex flex-col gap-1">
-                  <Link href="/">Sitio Baha-baha, Tayud, Consolacion, Cebu 6001</Link>
+                  <Link href="/">
+                    Sitio Baha-baha, Tayud, Consolacion, Cebu 6001
+                  </Link>
                 </div>
               </div>
 
               <div className="flex flex-col gap-2.5">
                 <p className="text-base text-lightGray">CEBU BRANCH</p>
                 <div className="flex flex-col gap-1">
-                  <Link href="/">J. De Veyra St., North Reclamation Area, Cebu City 6000</Link>
+                  <Link href="/">
+                    J. De Veyra St., North Reclamation Area, Cebu City 6000
+                  </Link>
                 </div>
               </div>
 
@@ -79,8 +84,8 @@ export default function Footer() {
                 <p className="text-base text-lightGray">MAKATI BRANCH</p>
                 <div className="flex flex-col gap-1">
                   <Link href="/">
-                    Alexander Suites G/F 8070 Tanguille St., cor. Estrella Avenue, San Antonio
-                    Village, Makati City 1203
+                    Alexander Suites G/F 8070 Tanguille St., cor. Estrella
+                    Avenue, San Antonio Village, Makati City 1203
                   </Link>
                 </div>
               </div>
@@ -104,9 +109,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>      
+      </div>
 
-      <div className="text-lightestGray font-bold text-[15.5vw] max-h-[230px]">
+      <div className="text-lightestGray font-bold text-[15.3vw] max-h-[230px]">
         AVEGA BROS.
       </div>
     </footer>
