@@ -57,8 +57,8 @@ const RoleForm = () => {
           Complete and submit the required fields. We'd love to hear from you.{" "}
           <br />
           <br />
-          We’ll keep your application and reach out when a role that matches
-          your skills becomes available.
+          We&apos;ll keep your application and reach out when a role that
+          matches your skills becomes available.
         </p>
       </div>
 

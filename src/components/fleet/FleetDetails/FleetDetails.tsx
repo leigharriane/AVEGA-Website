@@ -3,6 +3,7 @@
 import Button from "@/components/Button";
 import { imageUrl } from "../../../../apiConfig";
 import { Fleet } from "../models/fleet.model";
+import Image from "next/image";
 
 const FleetDetails = ({
   id,
@@ -26,7 +27,7 @@ const FleetDetails = ({
   return (
     <div className="bg-white pb-[20px] px-[40px] rounded-md w-full">
       <div className="mb-5">
-        <img
+        <Image
           src={image}
           width={455}
           height={200}

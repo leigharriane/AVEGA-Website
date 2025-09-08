@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import TruckIcon from "../../../public/icons/Truck";
 import VesselIcon from "../../../public/icons/Vessel";
 import Warehouse2Icon from "../../../public/icons/Warehouse2";
+import Image from "next/image";
 
 const steps = [
   {
@@ -64,19 +65,45 @@ const ICHSSteps = () => {
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1025px)");
-    const handleChange = (event: any) => setIsMd(event.matches);
+  // useEffect(() => {
+  //   const mediaQuery = window.matchMedia("(min-width: 1025px)");
+  //   const handleChange = (event: any) => setIsMd(event.matches);
 
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener("change", handleChange);
+  //   if (mediaQuery.addEventListener) {
+  //     mediaQuery.addEventListener("change", handleChange);
+  //   }
+
+  //   setIsMd(mediaQuery.matches);
+
+  //   return () => {
+  //     if (mediaQuery.removeEventListener) {
+  //       mediaQuery.removeEventListener("change", handleChange);
+  //     }
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1025px)");
+
+    // Properly typed event
+    const handleChange = (e: MediaQueryListEvent) => setIsMd(e.matches);
+
+    // Set initial state
+    setIsMd(mql.matches);
+
+    // Subscribe (new + legacy)
+    if (mql.addEventListener) {
+      mql.addEventListener("change", handleChange);
+    } else {
+      mql.addListener(handleChange);
     }
 
-    setIsMd(mediaQuery.matches);
-
+    // Cleanup
     return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener("change", handleChange);
+      if (mql.removeEventListener) {
+        mql.removeEventListener("change", handleChange);
+      } else {
+        mql.removeListener(handleChange);
       }
     };
   }, []);
@@ -231,10 +258,7 @@ const ICHSSteps = () => {
     };
 
     const onTouchEnd = () => {
-      if (
-        touchStartX.current !== null &&
-        touchEndX.current !== null
-      ) {
+      if (touchStartX.current !== null && touchEndX.current !== null) {
         const distance = touchStartX.current - touchEndX.current;
 
         if (Math.abs(distance) > threshold) {
@@ -350,10 +374,12 @@ const ICHSSteps = () => {
           ref={contentRef}
           className="flex gap-10 items-center flex-col md:flex-row"
         >
-          <img
+          <Image
             src={steps[currentStep].image}
             className="md:w-[301px] w-full object-cover h-[199px] rounded-md"
             alt={steps[currentStep].title}
+            width={1080}
+            height={1080}
           />
           <div className="flex flex-col gap-2.5">
             <h1 className="text-red text-base leading-[100%] font-semibold">

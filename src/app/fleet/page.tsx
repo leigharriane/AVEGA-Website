@@ -53,7 +53,7 @@ export default function FleetPage() {
   );
 
   const filteredFleet = useMemo(() => {
-    let data = fleetData.filter(
+    const data = fleetData.filter(
       (ship) =>
         fleetTypes.includes(ship.type) &&
         ship.grt >= capacity[0] &&
