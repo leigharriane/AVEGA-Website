@@ -1,56 +1,12 @@
 "use client";
 
-import { applications } from "@/app/services/jobsData";
+import { applications } from "@/app/careers/jobsData";
 import Link from "next/link";
 import { useState } from "react";
 import CheckIcon from "../../../public/icons/Check";
+import ChevronDownIcon from "../../../public/icons/ChevronDown";
+import ChevronUpIcon from "../../../public/icons/ChevronUp";
 import PlusIcon from "../../../public/icons/Plus";
-
-const ChevronDownIcon = () => (
-  <svg
-    className="h-5 w-5"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="url(#gradientStroke)"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#A30101" />
-        <stop offset="100%" stopColor="#FF0000" />
-      </linearGradient>
-    </defs>
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M19 9l-7 7-7-7"
-    />
-  </svg>
-);
-
-const ChevronUpIcon = () => (
-  <svg
-    className="h-5 w-5"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="url(#gradientStroke)"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#A30101" />
-        <stop offset="100%" stopColor="#FF0000" />
-      </linearGradient>
-    </defs>
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M5 15l7-7 7 7"
-    />
-  </svg>
-);
 
 const Positions = () => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);

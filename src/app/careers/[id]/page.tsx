@@ -1,5 +1,5 @@
 "use client";
-import { applications } from "@/app/services/jobsData";
+import { applications } from "@/app/careers/jobsData";
 import CareerForm from "@/components/careers/CareerForm";
 import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
