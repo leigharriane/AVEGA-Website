@@ -1,6 +1,7 @@
 import { Fleet } from "@/components/fleet/models/fleet.model";
 import { notFound } from "next/navigation";
 import { apiKey, apiUrl, imageUrl } from "../../../../apiConfig";
+import Image from "next/image";
 
 interface FleetPageProps {
   params: {
@@ -35,7 +36,7 @@ const Page = async ({ params }: FleetPageProps) => {
   return (
     <div className="bg-white py-[20px] px-[40px] rounded-md w-full">
       <div className="my-5">
-        <img
+        <Image
           src={image}
           width={455}
           height={200}

@@ -50,15 +50,15 @@ const RoleForm = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-10">
       <div className="w-full lg:w-1/3 flex flex-col gap-5">
-        <h1 className="font-medium text-3xl">Didn’t find the right role?</h1>
+        <h1 className="font-medium text-3xl">Didn&apos;t find the right role?</h1>
         <p className="font-medium text-base text-lightGray">
           We welcome passionate and talented individuals to join us. <br />
           <br />
-          Complete and submit the required fields. We'd love to hear from you.{" "}
+          Complete and submit the required fields. We&apos;d love to hear from you.{" "}
           <br />
           <br />
-          We’ll keep your application and reach out when a role that matches
-          your skills becomes available.
+          We&apos;ll keep your application and reach out when a role that
+          matches your skills becomes available.
         </p>
       </div>
 

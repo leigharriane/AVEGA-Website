@@ -5,10 +5,19 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "./Button";
 import gsap from "gsap";
+import { usePathname } from "next/navigation";
 
 export default function Nav() {
   const navRef = React.useRef<HTMLElement | null>(null);
   const divRef = React.useRef<HTMLDivElement | null>(null);
+  // const pathname = usePathname();
+  // let colorText = "text-black";
+
+  // if (pathname === "/") {
+  //   colorText = "text-white";
+  // } else {
+  //   colorText = "text-black";
+  // }
 
   React.useLayoutEffect(() => {
     // typed GSAP contexts (for cleanup via .revert())
@@ -34,6 +43,7 @@ export default function Nav() {
             divRef.current?.classList.remove(
               "bg-transparent",
               "text-white",
+              // colorText,
               "rounded-none"
             );
             divRef.current?.classList.add(
@@ -57,7 +67,8 @@ export default function Nav() {
             );
             divRef.current?.classList.add(
               "bg-transparent",
-              "text-white",
+              "text-black",
+              // colorText,
               "rounded-none"
             );
           },
@@ -138,8 +149,12 @@ export default function Nav() {
     >
       <div
         ref={divRef}
-        className="w-full p-3 flex flex-row items-center justify-between bg-transparent text-white rounded-none"
+        className={`w-full p-3 flex flex-row items-center justify-between bg-transparent rounded-none`}
       >
+        {/* <div
+        ref={divRef}
+        className={`w-full p-3 flex flex-row items-center justify-between bg-transparent ${colorText} rounded-none`}
+      > */}
         <Image
           src="/images/logo.png"
           alt="Logo"
@@ -150,12 +165,12 @@ export default function Nav() {
         <div className="flex flex-row items-center justify-between gap-[2.5rem] font-medium text-base transition-all duration-300">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
-          <Link href="/about">Services</Link>
-          <Link href="/about">Fleet</Link>
-          <Link href="/about">Careers</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/fleet">Fleet</Link>
+          <Link href="/careers">Careers</Link>
         </div>
         <Button
-          link="#Contact"
+          link="/contact"
           size="small"
           color="red"
           classN="text-base font-semibold"
