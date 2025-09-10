@@ -172,7 +172,7 @@ const Team = () => {
           }, delay);
         } else {
           window.scrollTo({
-            top: document.body.scrollHeight,
+            top: window.scrollY + 400,
             behavior: "smooth",
           });
           isScrollingRef.current = false;
@@ -267,16 +267,21 @@ const Team = () => {
   return (
     <div ref={containerRef} className="flex flex-col gap-10">
       <div className="flex">
-        <div className="inline-flex bg-lightestGray rounded-full">
+        <div
+          className="inline-flex bg-lightestGray rounded-lg md:rounded-full 
+                  flex-col w-full space-y-2 sm:flex-row sm:space-y-0 sm:w-auto"
+        >
           {steps.map((step, index) => (
             <button
               key={step.id}
               onClick={() => handleStepClick(index)}
-              className={`py-[14px] px-[28px] rounded-full font-medium transition-all duration-300 text-lg ${
-                currentStep === index
-                  ? "bg-black text-white shadow"
-                  : "text-lightGray hover:bg-lightestGray"
-              }`}
+              className={`py-[14px] px-[28px] rounded-full font-medium transition-all duration-300 text-lg 
+                    w-full text-left sm:w-auto sm:text-center
+                    ${
+                      currentStep === index
+                        ? "bg-black text-white shadow"
+                        : "text-lightGray hover:bg-lightestGray"
+                    }`}
             >
               {step.title}
             </button>
@@ -285,7 +290,10 @@ const Team = () => {
       </div>
 
       <div>
-        <div ref={contentRef} className="grid grid-cols-4 gap-4 w-full">
+        <div
+          ref={contentRef}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full"
+        >
           {steps[currentStep].images.length < 4 &&
             Array.from({ length: 4 - steps[currentStep].images.length }).map(
               (_, i) => <div key={`empty-${i}`} />
@@ -293,13 +301,14 @@ const Team = () => {
 
           {steps[currentStep].images.map((item, e) => (
             <div key={e} className="w-full flex flex-col gap-5">
-              <Image
-                src={item.photo}
-                alt={steps[currentStep].title}
-                width={1080}
-                height={1080}
-                className="w-full h-[380px] object-cover rounded-md"
-              />
+              <div className="w-full aspect-[4/3] relative">
+                <Image
+                  src={item.photo}
+                  alt={steps[currentStep].title}
+                  fill
+                  className="object-cover rounded-md"
+                />
+              </div>
               <div className="flex flex-col">
                 <span className="font-medium text-xl">{item.name}</span>
                 <span className="font-medium text-base text-lightGray leading-[100%]">
