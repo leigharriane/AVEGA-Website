@@ -10,7 +10,7 @@ const steps = [
     title: "First Generation",
     images: [
       {
-        photo: "/images/trucking.png",
+        photo: "/images/alexander-vega-sr.jpg",
         name: "Alexander R. Vega Sr.",
         position: "Founder",
       },
