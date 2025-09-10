@@ -1,3 +1,4 @@
+import Partners from "@/components/about/Partners";
 import Team from "@/components/about/Team";
 import Timeline from "@/components/about/Timeline";
 import Values from "@/components/about/Values";
@@ -97,23 +98,20 @@ const AboutPage = () => {
         </div>
         <Team />
       </div>
+      <div className="px-5 lg:px-20">
+        <div className="flex flex-col">
+          <RiseText
+            text="AVEGA Partners"
+            className="font-medium text-3xl leading-[100%] mb-10"
+            start="top 80%"
+            duration={1}
+            stagger={0.02}
+          />
+        </div>
+        <Partners />
+      </div>
       <div className="border-b border-lighterGray"></div>
     </div>
-    // <div>
-    //   <section>
-    //     <Values />
-    //   </section>
-    //   <section>
-    //     <h1 className="leading-[100%] text-[54.93px] font-medium mb-[40px]">
-    //       Meet the Team
-    //     </h1>
-    //   </section>
-    //   <section>
-    //     <h1 className="leading-[100%] text-[54.93px] font-medium mb-[40px]">
-    //       AVEGA Partners
-    //     </h1>
-    //   </section>
-    // </div>
   );
 };
 

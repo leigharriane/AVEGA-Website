@@ -154,7 +154,6 @@ const Team = () => {
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (e.deltaY < 0 && currentStep === 0) {
-        // Allow natural scroll upwards on first step
         return;
       }
 
