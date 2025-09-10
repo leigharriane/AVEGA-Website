@@ -23,7 +23,7 @@ const AboutPage = () => {
             src="/images/about-hero.png"
             width={1920}
             height={1080}
-            className="w-full object-cover h-[600px] rounded-lg mt-10"
+            className="w-full object-cover h-[200px] md:h-[600px] rounded-lg mt-10"
           />
         </div>
       </div>

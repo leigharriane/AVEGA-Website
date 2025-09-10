@@ -3,6 +3,7 @@
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 if (typeof window !== "undefined") {
@@ -15,8 +16,7 @@ const timelineData = [
     title: "A Man with a Vision",
     description:
       "The beginning of an extraordinary journey. A visionary leader emerges with bold ideas that would reshape the future, setting the foundation for decades of innovation and growth.",
-    image:
-      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=250&fit=crop",
+    image: "/images/alexander-vega-sr.jpg",
     position: "top",
   },
   {
@@ -24,8 +24,7 @@ const timelineData = [
     title: "A Father’s Vision, A Family’s Mission",
     description:
       "Taking the first brave steps into uncharted territory. With courage and determination, new paths are forged through uncertainty, laying the groundwork for future breakthroughs.",
-    image:
-      "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=400&h=250&fit=crop",
+    image: "/images/vega-family.jpg",
     position: "bottom",
   },
   {
@@ -33,8 +32,7 @@ const timelineData = [
     title: "Stepping Into the Unknown",
     description:
       "Strategic alliances form the backbone of success. Strong partnerships are established, creating a network of trust and collaboration that would prove invaluable in the years to come.",
-    image:
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=250&fit=crop",
+    image: "/images/vega-family.jpg",
     position: "top",
   },
   {
@@ -42,8 +40,7 @@ const timelineData = [
     title: "Loss Beneath the Waves",
     description:
       "Legacy takes shape as vision becomes mission. A father's dreams transform into a family's shared purpose, ensuring continuity and dedication across generations.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
+    image: "/images/vega-family.jpg",
     position: "bottom",
   },
   {
@@ -51,8 +48,7 @@ const timelineData = [
     title: "Anchored in Partnership",
     description:
       "Through adversity comes strength. Facing unexpected challenges and losses, resilience is tested and character is forged, ultimately leading to deeper wisdom and renewed purpose.",
-    image:
-      "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=250&fit=crop",
+    image: "/images/vega-family.jpg",
     position: "top",
   },
   {
@@ -60,8 +56,7 @@ const timelineData = [
     title: "Passing the Wheel",
     description:
       "Through adversity comes strength. Facing unexpected challenges and losses, resilience is tested and character is forged, ultimately leading to deeper wisdom and renewed purpose.",
-    image:
-      "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=250&fit=crop",
+    image: "/images/vega-family.jpg",
     position: "top",
   },
 ];
@@ -204,16 +199,14 @@ export default function Timeline() {
           gsap.ticker.add(onTick);
         }
 
-        // Calculate velocity
         const now = e.timeStamp;
         const dt = now - lastTouchTime;
         if (dt > 0) {
-          velocityX = ((lastTouchX - touchCurrentX) / dt) * 16; // Normalize to ~60fps frame time
+          velocityX = ((lastTouchX - touchCurrentX) / dt) * 16;
         }
         lastTouchX = touchCurrentX;
         lastTouchTime = now;
 
-        // Reset start position to current for smooth dragging
         touchStartX = touchCurrentX;
       }
     };
@@ -222,7 +215,6 @@ export default function Timeline() {
       touchStartX = null;
       touchCurrentX = null;
 
-      // Start momentum animation on touch end if velocity is high enough
       if (Math.abs(velocityX) > 0.5) {
         animateMomentum();
       } else {
@@ -341,7 +333,7 @@ export default function Timeline() {
             <div
               key={item.year}
               className={`timeline-card absolute cursor-pointer ${
-                item.position === "top" ? "top-[10%]" : "top-[45%]"
+                item.position === "top" ? "top-[10%]" : "top-[50%]"
               } transition-all duration-300 ease-out`}
               style={{
                 left: `${calculateCardPosition(item.year) + 10}px`,
@@ -357,29 +349,27 @@ export default function Timeline() {
                 }`}
                 style={{ width: "356px" }}
               >
-                <div className="p-5 pb-5">
+                <div className="p-2 md:p-5 md:pb-5">
                   <span className="text-sm text-lightGray mb-2.5">
                     {item.year}
                   </span>
-                  <h3 className="text-base font-bold mt-1">{item.title}</h3>
+                  <h3 className="text-base font-bold">{item.title}</h3>
                 </div>
 
-                <div className="px-5">
-                  <img
+                <div className="px-2 md:px-5">
+                  <Image
                     src={item.image}
                     alt={item.title}
-                    className="rounded-2xl object-cover"
-                    style={{
-                      width: "316px",
-                      height: "180px",
-                    }}
+                    className="rounded-2xl object-cover w-full md:w-[316px] h-[200px]"
+                    width={1080}
+                    height={1080}
                   />
                 </div>
 
                 <div
-                  className={`px-5 pb-5 transition-all duration-300 ease-out overflow-hidden ${
+                  className={`px-2 md:px-5 pb-2 md:pb-5 transition-all duration-300 ease-out overflow-hidden ${
                     hoveredCard === index
-                      ? "pt-5 max-h-32 opacity-100"
+                      ? "pt-2 md:pt-5 max-h-32 opacity-100"
                       : "max-h-0 opacity-0"
                   }`}
                 >
