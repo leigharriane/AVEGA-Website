@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useRef, useState } from "react";
 
 const services = [
@@ -71,10 +72,12 @@ const TayloredCargoSection = () => {
             key={idx}
             className="flex-shrink-0 w-[350px] hover:w-[450px] transition-all duration-300 bg-lightestGray rounded-xl p-5"
           >
-            <img
+            <Image
               src={service.image}
               alt={service.title}
               className="w-full h-40 object-cover rounded-md mb-5"
+              height={300}
+              width={300}
             />
             <div className="flex flex-col gap-2.5">
               <h3 className="font-bold text-xl leading-[100%]">
