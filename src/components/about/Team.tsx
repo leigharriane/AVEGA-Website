@@ -1,52 +1,72 @@
 "use client";
 
 import { gsap } from "gsap";
-import { useEffect, useRef, useState } from "react";
-import TruckIcon from "../../../public/icons/Truck";
-import VesselIcon from "../../../public/icons/Vessel";
-import Warehouse2Icon from "../../../public/icons/Warehouse2";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 const steps = [
   {
     id: 1,
-    icon: <Warehouse2Icon height={22} width={22} fill="white" />,
-    image: "/images/port-transfer.png",
-    title: "Warehouse Pickup",
-    description:
-      "We collect cargo directly from your warehouse using Avega trucks, ensuring secure and efficient loading",
+    title: "First Generation",
+    images: [
+      {
+        photo: "/images/trucking.png",
+        name: "Alexander R. Vega Sr.",
+        position: "Founder",
+      },
+    ],
   },
   {
     id: 2,
-    icon: <TruckIcon height={22} width={22} fill="white" />,
-    image: "/images/trucking.png",
-    title: "Port Delivery",
-    description:
-      "Our trucks transfer the cargo to the port where it is consolidated and prepared for its next transport.",
+    title: "Second Generation",
+    images: [
+      {
+        photo: "/images/trucking.png",
+        name: "Alec N. Vega",
+        position: "Chairman of the Board",
+      },
+      {
+        photo: "/images/trucking.png",
+        name: "Alexander N. Vega Jr.",
+        position: "Vice Chairman",
+      },
+      {
+        photo: "/images/trucking.png",
+        name: "Alison N. Vega",
+        position: "President and CEO",
+      },
+      {
+        photo: "/images/trucking.png",
+        name: "Joel  Hechanova",
+        position: "Vice President Engineer",
+      },
+    ],
   },
   {
     id: 3,
-    icon: <VesselIcon height={22} width={22} fill="white" />,
-    image: "/images/nationwide.png",
-    title: "Nationwide Shipment",
-    description:
-      "Using our own fleet, the cargo is shipped out to its next destination. We can ship cargo to any part of the Philippines.",
-  },
-  {
-    id: 4,
-    icon: <TruckIcon height={22} width={22} fill="white" />,
-    image: "/images/home-img1.png",
-    title: "Distribution to Warehouses",
-    description:
-      "Once the cargo hits land, we deliver it to the different warehouses in the area.",
-  },
-  {
-    id: 5,
-    icon: <Warehouse2Icon height={22} width={22} fill="white" />,
-    image: "/images/wh-pickup.png",
-    title: "Warehouse Management",
-    description:
-      "Our team stacks and organizes the goods in the warehouse and readies them for wholesaling or further transport.",
+    title: "Third Generation",
+    images: [
+      {
+        photo: "/images/trucking.png",
+        name: "Stephen Vega",
+        position: "COO External",
+      },
+      {
+        photo: "/images/trucking.png",
+        name: "Alec Daniel Sandy J. Vega",
+        position: "COO Internal",
+      },
+      {
+        photo: "/images/trucking.png",
+        name: "Christian Adrian J.  Vega",
+        position: "Supply Chain Manager",
+      },
+      {
+        photo: "/images/trucking.png",
+        name: "Samantha Alec G. Vega",
+        position: "Business Analyst",
+      },
+    ],
   },
 ];
 
@@ -59,54 +79,9 @@ const Team = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isScrollingRef = useRef(false);
-  const [triangleLeft, setTriangleLeft] = useState<number | null>(null);
-  const [isMd, setIsMd] = useState(false);
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-
-  // useEffect(() => {
-  //   const mediaQuery = window.matchMedia("(min-width: 1025px)");
-  //   const handleChange = (event: any) => setIsMd(event.matches);
-
-  //   if (mediaQuery.addEventListener) {
-  //     mediaQuery.addEventListener("change", handleChange);
-  //   }
-
-  //   setIsMd(mediaQuery.matches);
-
-  //   return () => {
-  //     if (mediaQuery.removeEventListener) {
-  //       mediaQuery.removeEventListener("change", handleChange);
-  //     }
-  //   };
-  // }, []);
-
-  useEffect(() => {
-    const mql = window.matchMedia("(min-width: 1025px)");
-
-    // Properly typed event
-    const handleChange = (e: MediaQueryListEvent) => setIsMd(e.matches);
-
-    // Set initial state
-    setIsMd(mql.matches);
-
-    // Subscribe (new + legacy)
-    if (mql.addEventListener) {
-      mql.addEventListener("change", handleChange);
-    } else {
-      mql.addListener(handleChange);
-    }
-
-    // Cleanup
-    return () => {
-      if (mql.removeEventListener) {
-        mql.removeEventListener("change", handleChange);
-      } else {
-        mql.removeListener(handleChange);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     for (let i = 0; i <= currentStep; i++) {
@@ -119,23 +94,6 @@ const Team = () => {
         });
       }
     }
-  }, [currentStep]);
-
-  useEffect(() => {
-    const updateTrianglePosition = () => {
-      const activeStep = stepRefs.current[currentStep];
-      if (activeStep && containerRef.current) {
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const stepRect = activeStep.getBoundingClientRect();
-        const leftOffset =
-          stepRect.left + stepRect.width / 2 - containerRect.left;
-        setTriangleLeft(leftOffset);
-      }
-    };
-
-    updateTrianglePosition();
-    window.addEventListener("resize", updateTrianglePosition);
-    return () => window.removeEventListener("resize", updateTrianglePosition);
   }, [currentStep]);
 
   useEffect(() => {
@@ -195,6 +153,11 @@ const Team = () => {
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY < 0 && currentStep === 0) {
+        // Allow natural scroll upwards on first step
+        return;
+      }
+
       e.preventDefault();
 
       if (isScrollingRef.current) return;
@@ -221,10 +184,6 @@ const Team = () => {
             handlePrevious();
           }, delay);
         } else {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
           isScrollingRef.current = false;
         }
       }
@@ -241,12 +200,11 @@ const Team = () => {
     }
   }, [currentStep, steps.length]);
 
-  // Touch event handlers for swipe detection
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const threshold = 50; // minimum swipe distance in px
+    const threshold = 50;
 
     const onTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.changedTouches[0].clientX;
@@ -263,10 +221,8 @@ const Team = () => {
 
         if (Math.abs(distance) > threshold) {
           if (distance > 0) {
-            // Swipe left (right to left) -> Next step
             handleNext();
           } else {
-            // Swipe right (left to right) -> Previous step
             handlePrevious();
           }
         }
@@ -303,95 +259,56 @@ const Team = () => {
   };
 
   const handleStepClick = (stepIndex: number) => {
-    if (stepIndex <= currentStep || completedSteps.includes(stepIndex)) {
-      setCurrentStep(stepIndex);
-    }
+    setCompletedSteps((prev) =>
+      stepIndex > currentStep ? [...prev, currentStep] : prev
+    );
+    setCurrentStep(stepIndex);
   };
 
   return (
-    <div ref={containerRef} className="w-full space-y-8 relative">
-      <div className="relative w-full h-10">
-        {/* Progress Bar */}
-        <div className="absolute top-0 left-0 w-full h-2 bg-lightestGray -translate-y-1/2">
-          <div
-            ref={progressRef}
-            className="h-full bg-red transition-all duration-600"
-            style={{ width: "0%" }}
-          />
-
-          {[1, 2, 3, 4, 5].map((tick) => (
-            <div
-              key={tick}
-              className="absolute top-1/2 w-px h-4 bg-lightestGray -translate-x-1/2 -translate-y-1/2"
-              style={{
-                left: `${(tick / 6) * 100}%`,
-              }}
-            />
+    <div ref={containerRef} className="flex flex-col gap-10">
+      <div className="flex">
+        <div className="inline-flex bg-lightestGray rounded-full">
+          {steps.map((step, index) => (
+            <button
+              key={step.id}
+              onClick={() => handleStepClick(index)}
+              className={`py-[14px] px-[28px] rounded-full font-medium transition-all duration-300 text-lg ${
+                currentStep === index
+                  ? "bg-black text-white shadow"
+                  : "text-lightGray hover:bg-lightestGray"
+              }`}
+            >
+              {step.title}
+            </button>
           ))}
         </div>
-
-        {/* Step Indicators */}
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            ref={(el: HTMLDivElement | null) => {
-              stepRefs.current[index] = el;
-            }}
-            className="absolute top-1/2 transform -translate-y-1/2"
-            style={{
-              left: `${((index + 1) / (steps.length + 1)) * 100}%`,
-              transform: "translate(-50%, -50%)",
-            }}
-            onClick={() => handleStepClick(index)}
-          >
-            <div className="step-circle w-10 h-10 rounded-full flex items-center justify-center bg-lightestGray transition-all duration-300 group-hover:scale-105 cursor-pointer">
-              <div
-                ref={(el: HTMLDivElement | null) => {
-                  iconRefs.current[index] = el;
-                }}
-                className="text-white"
-              >
-                {index <= currentStep && step.icon}
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
 
-      <div className="bg-lightestGray rounded-lg p-5 mx-5 lg:mx-20 relative">
-        {triangleLeft !== null && (
-          <div
-            className="absolute -top-8 w-0 h-0 
-              border-l-[20px] lg:border-l-[40px] border-l-transparent 
-              border-r-[20px] lg:border-r-[40px] border-r-transparent 
-              border-b-[40px] border-b-lightestGray 
-              transition-all duration-300"
-            style={{ left: triangleLeft - (isMd ? 120 : 40) }}
-          />
-        )}
+      <div>
+        <div ref={contentRef} className="grid grid-cols-4 gap-4 w-full">
+          {steps[currentStep].images.length < 4 &&
+            Array.from({ length: 4 - steps[currentStep].images.length }).map(
+              (_, i) => <div key={`empty-${i}`} />
+            )}
 
-        <div
-          ref={contentRef}
-          className="flex gap-10 items-center flex-col md:flex-row"
-        >
-          <Image
-            src={steps[currentStep].image}
-            className="md:w-[301px] w-full object-cover h-[199px] rounded-md"
-            alt={steps[currentStep].title}
-            width={1080}
-            height={1080}
-          />
-          <div className="flex flex-col gap-2.5">
-            <h1 className="text-red text-base leading-[100%] font-semibold">
-              Step {steps[currentStep].id}
-            </h1>
-            <span className="text-black text-2xl leading-[100%] font-semibold">
-              {steps[currentStep].title}
-            </span>
-            <span className="text-lightGray text-base leading-[100%] font-medium">
-              {steps[currentStep].description}
-            </span>
-          </div>
+          {steps[currentStep].images.map((item, e) => (
+            <div key={e} className="w-full flex flex-col gap-5">
+              <Image
+                src={item.photo}
+                alt={steps[currentStep].title}
+                width={1080}
+                height={1080}
+                className="w-full h-[380px] object-cover rounded-md"
+              />
+              <div className="flex flex-col">
+                <span className="font-medium text-xl">{item.name}</span>
+                <span className="font-medium text-base text-lightGray leading-[100%]">
+                  {item.position}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
