@@ -74,7 +74,7 @@ export default function Timeline() {
   const CARD_WIDTH = 400;
   const baseOffset = 40;
 
-  const topYears = [1981, 1983, 1985, 1987, 1995, 1997];
+  const topYears = [1981, 1983, 1985, 1987, 1995, 1997, 1999];
 
   const calculateCardPosition = (cardYear: number) => {
     const yearSpacing = CARD_WIDTH;
@@ -112,6 +112,13 @@ export default function Timeline() {
     const maxScrollX = content.scrollWidth - container.clientWidth;
     let isAnimating = false;
 
+    let touchStartX: number | null = null;
+    let touchCurrentX: number | null = null;
+    let lastTouchTime = 0;
+    let lastTouchX = 0;
+    let velocityX = 0;
+    let momentumID: number | null = null;
+
     const onTick = () => {
       if (!isAnimating) return;
 
@@ -123,6 +130,26 @@ export default function Timeline() {
       }
       currentX = Math.min(Math.max(currentX, 0), maxScrollX);
       content.style.transform = `translateX(${-currentX}px)`;
+    };
+
+    const animateMomentum = () => {
+      if (Math.abs(velocityX) < 0.1) {
+        velocityX = 0;
+        momentumID = null;
+        return;
+      }
+
+      velocityX *= 0.95; // friction
+
+      targetX += velocityX;
+      targetX = Math.min(Math.max(targetX, 0), maxScrollX);
+
+      if (!isAnimating) {
+        isAnimating = true;
+        gsap.ticker.add(onTick);
+      }
+
+      momentumID = requestAnimationFrame(animateMomentum);
     };
 
     const onWheel = (e: WheelEvent) => {
@@ -145,11 +172,76 @@ export default function Timeline() {
       }
     };
 
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        if (momentumID) {
+          cancelAnimationFrame(momentumID);
+          momentumID = null;
+        }
+
+        touchStartX = e.touches[0].clientX;
+        touchCurrentX = touchStartX;
+        lastTouchX = touchStartX;
+        lastTouchTime = e.timeStamp;
+        velocityX = 0;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!touchStartX) return;
+      touchCurrentX = e.touches[0].clientX;
+
+      const deltaX = touchStartX - touchCurrentX;
+
+      if ((deltaX > 0 && targetX < maxScrollX) || (deltaX < 0 && targetX > 0)) {
+        e.preventDefault();
+
+        targetX += deltaX;
+        targetX = Math.min(Math.max(targetX, 0), maxScrollX);
+
+        if (!isAnimating) {
+          isAnimating = true;
+          gsap.ticker.add(onTick);
+        }
+
+        // Calculate velocity
+        const now = e.timeStamp;
+        const dt = now - lastTouchTime;
+        if (dt > 0) {
+          velocityX = ((lastTouchX - touchCurrentX) / dt) * 16; // Normalize to ~60fps frame time
+        }
+        lastTouchX = touchCurrentX;
+        lastTouchTime = now;
+
+        // Reset start position to current for smooth dragging
+        touchStartX = touchCurrentX;
+      }
+    };
+
+    const onTouchEnd = () => {
+      touchStartX = null;
+      touchCurrentX = null;
+
+      // Start momentum animation on touch end if velocity is high enough
+      if (Math.abs(velocityX) > 0.5) {
+        animateMomentum();
+      } else {
+        velocityX = 0;
+      }
+    };
+
     container.addEventListener("wheel", onWheel, { passive: false });
+    container.addEventListener("touchstart", onTouchStart, { passive: false });
+    container.addEventListener("touchmove", onTouchMove, { passive: false });
+    container.addEventListener("touchend", onTouchEnd);
 
     return () => {
       container.removeEventListener("wheel", onWheel);
+      container.removeEventListener("touchstart", onTouchStart);
+      container.removeEventListener("touchmove", onTouchMove);
+      container.removeEventListener("touchend", onTouchEnd);
       gsap.ticker.remove(onTick);
+      if (momentumID) cancelAnimationFrame(momentumID);
     };
   }, []);
 
@@ -193,7 +285,7 @@ export default function Timeline() {
         ref={contentRef}
         className="relative"
         style={{
-          width: `${topYears.length * CARD_WIDTH + 400}px`,
+          width: `${topYears.length * CARD_WIDTH}px`,
           height: "100%",
           willChange: "transform",
         }}
