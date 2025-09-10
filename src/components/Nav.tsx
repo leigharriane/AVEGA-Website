@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 export default function Nav() {
   const navRef = React.useRef<HTMLElement | null>(null);
   const divRef = React.useRef<HTMLDivElement | null>(null);
-  // const pathname = usePathname();
+  const pathname = usePathname();
   // let colorText = "text-black";
 
   // if (pathname === "/") {
@@ -67,7 +67,7 @@ export default function Nav() {
             );
             divRef.current?.classList.add(
               "bg-transparent",
-              "text-black",
+              "text-white",
               // colorText,
               "rounded-none"
             );
@@ -149,7 +149,7 @@ export default function Nav() {
     >
       <div
         ref={divRef}
-        className={`w-full p-3 flex flex-row items-center justify-between bg-transparent rounded-none`}
+        className={`w-full p-3 flex flex-row items-center justify-between bg-transparent text-white rounded-none`}
       >
         {/* <div
         ref={divRef}
