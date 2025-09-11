@@ -11,27 +11,6 @@ export async function getAllFleets(): Promise<Fleet[]> {
     return data as Fleet[];
 }
 
-// Fleet changes by ID
-const changes: Record<number, Partial<Fleet>> = {
-    75: {
-        type: "equipment",
-        name: "CUTTER' SUCTION DREDGER",
-        photo_path: "/images/logo.png",
-        horsepower: "0"
-    },
-    48: {
-        type: "equipment",
-        photo_path: "/images/logo.png",
-        horsepower: "0"
-    },
-    56: {
-        type: "equipment",
-        name: "SELF PROPELLED CRANE BARGE",
-        photo_path: "/images/logo.png",
-        horsepower: "0"
-    },
-};
-
 // Static equipment list
 const equipments: Fleet[] = [
     {
@@ -120,27 +99,16 @@ const equipments: Fleet[] = [
     },
 ];
 
-// Apply changes to a fleet if applicable
-function applyChangesToFleet(fleet: Fleet): Fleet {
-    if (fleet.id !== undefined && changes[fleet.id]) {
-        return { ...fleet, ...changes[fleet.id] };
-    }
-    return fleet;
-}
-
-// Get all fleets with changes and equipments merged
+// Get all fleets and static equipments (unchanged)
 export async function getModifiedFleets(): Promise<Fleet[]> {
     const fleets = await getAllFleets();
-    const updatedFleets = fleets.map(applyChangesToFleet);
-    return [...updatedFleets, ...equipments];
+    return [...fleets, ...equipments];
 }
 
-// Get a single fleet or equipment by ID
+// Get a single fleet or equipment by ID (unchanged)
 export async function getFleetBySingleId(id: number): Promise<Fleet | undefined> {
     const fleets = await getAllFleets();
     const matchedFleet = fleets.find((fleet) => fleet.id == id);
-    if (matchedFleet) {
-        return applyChangesToFleet(matchedFleet);
-    }
+    if (matchedFleet) return matchedFleet;
     return equipments.find((equipment) => equipment.id == id);
 }
