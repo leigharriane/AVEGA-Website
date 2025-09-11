@@ -12,7 +12,8 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { apiKey, apiUrl, imageUrl } from "../../../apiConfig";
+import { imageUrl } from "../../../apiConfig";
+import { getModifiedFleets } from "./lib/fleet";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,26 +29,8 @@ export default function FleetPage() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(
-          `${apiUrl}/website/master-vessels?key=${apiKey}&limit=1000&stat=1`
-        );
-        if (!response.ok) throw new Error("Failed to fetch fleet data");
-        const { data } = await response.json();
-
-        const changes: Record<number, Partial<Fleet>> = {
-          75: { type: "equipment", name: "CUTTER' SUCTION DREDGER" },
-          48: { type: "equipment" },
-          56: { type: "equipment", name: "SELF PROPELLED CRANE BARGE" },
-        };
-
-        const updatedData = data.map((item: Fleet) => {
-          if (item.id !== undefined && changes[item.id]) {
-            return { ...item, ...changes[item.id] };
-          }
-          return item;
-        });
-
-        setFleetList(updatedData);
+        const fleets = await getModifiedFleets();
+        setFleetList(fleets);
       } catch (err) {
         console.log(`Error fetching fleet data: ${err}`);
       } finally {
@@ -186,7 +169,11 @@ export default function FleetPage() {
                       <Image
                         width={1080}
                         height={1080}
-                        src={ship.image}
+                        src={
+                          ship.type == "equipment"
+                            ? String(ship.photo_path)
+                            : ship.image
+                        }
                         alt={ship.name}
                         className="w-full h-full object-cover rounded-md"
                       />
@@ -196,14 +183,20 @@ export default function FleetPage() {
                     <h3 className="font-bold text-base leading-[100%] mb-1">
                       {ship.name}
                     </h3>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-lightGray text-base leading-[100%]">
-                        GRT
-                      </p>
-                      <p className="text-black text-base leading-[100%]">
-                        {parseFloat(ship.gross_tonnage).toLocaleString()}
-                      </p>
-                    </div>
+                    {ship.type === "equipment" ? (
+                      <div>
+                        
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-start gap-1">
+                        <p className="text-lightGray text-base leading-[100%]">
+                          GRT
+                        </p>
+                        <p className="text-black text-base leading-[100%]">
+                          {parseFloat(ship.gross_tonnage).toLocaleString()}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

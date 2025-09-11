@@ -17,4 +17,5 @@ export interface Fleet {
     phil_dwt?: string;
     length_lbp?: string;
     length_loa?: string;
+    horsepower?: string;
 }
