@@ -1,11 +1,10 @@
-import React from "react";
-import Button from "../Button";
 import Image from "next/image";
+import Button from "../Button";
 
 const ServicesFeaturedCards = () => {
   return (
-    <div className="flex gap-5 flex-col md:flex-row mt-10">
-      <div className="p-5 w-full bg-lightestGray rounded-lg flex gap-5 justify-between flex-col xl:flex-row">
+    <div className="flex gap-5 flex-col lg:flex-row mt-10">
+      <div className="p-5 flex gap-5 flex-col-reverse w-full bg-lightestGray rounded-lg sm:items-center sm:flex-row justify-between">
         <div className="flex flex-col gap-3">
           <h1 className="font-bold text-xl  leading-[100%]">
             Integrated Cargo Handling Services (ICHS)
@@ -23,14 +22,14 @@ const ServicesFeaturedCards = () => {
           </Button>
         </div>
         <Image
-          src="/images/wh-pickup.png"
+          src="/images/about-hero-1.png"
           alt="wh-pickup"
           width={1920}
           height={1080}
-          className="xl:w-5/12 object-cover min-w-[226px] h-[205px] rounded-md"
+          className="object-contain sm:w-1/2 lg:w-1/3 xl:min-w-[226px] h-[250px] rounded-md"
         ></Image>
       </div>
-      <div className="p-5 w-full bg-lightestGray rounded-lg flex gap-5 justify-between flex-col xl:flex-row">
+      <div className="p-5 flex gap-5 flex-col-reverse w-full bg-lightestGray rounded-lg sm:items-center sm:flex-row justify-between">
         <div className="flex flex-col gap-3">
           <h1 className="font-bold text-xl  leading-[100%]">
             Our Tailored Cargo Solutions
@@ -48,11 +47,11 @@ const ServicesFeaturedCards = () => {
           </Button>
         </div>
         <Image
-          src="/images/nationwide.png"
+          src="/images/about-hero-2.png"
           alt="wh-pickup"
           width={1920}
           height={1080}
-          className="xl:w-5/12 object-cover min-w-[226px] h-[205px] rounded-md"
+          className="object-contain sm:w-1/2 lg:w-1/3 xl:min-w-[226px] h-[250px] rounded-md"
         ></Image>
       </div>
     </div>
