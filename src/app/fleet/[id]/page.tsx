@@ -1,7 +1,7 @@
 import { Fleet } from "@/components/fleet/models/fleet.model";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { apiKey, apiUrl, imageUrl } from "../../../../apiConfig";
-import Image from "next/image";
 
 interface FleetPageProps {
   params: {
@@ -15,8 +15,21 @@ const getFleetById = async (id: number): Promise<Fleet | null> => {
       `${apiUrl}/website/master-vessels/${id}?key=${apiKey}`
     );
     if (!response.ok) throw new Error("Failed to fetch fleet data");
+
     const { data } = await response.json();
-    return data as Fleet;
+    const fleet = data as Fleet;
+
+    const changes: Record<number, Partial<Fleet>> = {
+      75: { type: "equipment", name: "CUTTER' SUCTION DREDGER" },
+      48: { type: "equipment" },
+      56: { type: "equipment", name: "SELF PROPELLED CRANE BARGE" },
+    };
+
+    if (fleet.id !== undefined && changes[fleet.id]) {
+      return { ...fleet, ...changes[fleet.id] };
+    }
+
+    return fleet;
   } catch (err) {
     console.error("Error fetching fleet:", err);
     return null;
@@ -45,7 +58,9 @@ const Page = async ({ params }: FleetPageProps) => {
         />
       </div>
       <div className="mb-5">
-        <h1 className="font-medium text-lg text-lightGray">Cargo Ship</h1>
+        <h1 className="font-medium text-lg text-lightGray">
+          {fleet.type.toUpperCase()}
+        </h1>
         <h1 className="font-bold text-xl leading-[100%] text-black">
           {fleet.name}
         </h1>

@@ -16,8 +16,21 @@ const getFleetById = async (id: number): Promise<Fleet | null> => {
       `${apiUrl}/website/master-vessels/${id}?key=${apiKey}`
     );
     if (!response.ok) throw new Error("Failed to fetch fleet data");
+
     const { data } = await response.json();
-    return data as Fleet;
+    const fleet = data as Fleet;
+
+    const changes: Record<number, Partial<Fleet>> = {
+      75: { type: "equipment", name: "CUTTER' SUCTION DREDGER" },
+      48: { type: "equipment" },
+      56: { type: "equipment", name: "SELF PROPELLED CRANE BARGE" },
+    };
+
+    if (fleet.id !== undefined && changes[fleet.id]) {
+      return { ...fleet, ...changes[fleet.id] };
+    }
+
+    return fleet;
   } catch (err) {
     console.error("Error fetching fleet:", err);
     return null;

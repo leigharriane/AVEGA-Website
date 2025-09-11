@@ -9,10 +9,10 @@ import FleetSkeleton from "@/components/fleet/skeletons/FleetSkeleton";
 import RiseText from "@/components/RiseText";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { apiKey, apiUrl, imageUrl } from "../../../apiConfig";
-import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,13 +33,28 @@ export default function FleetPage() {
         );
         if (!response.ok) throw new Error("Failed to fetch fleet data");
         const { data } = await response.json();
-        setFleetList(data);
+
+        const changes: Record<number, Partial<Fleet>> = {
+          75: { type: "equipment", name: "CUTTER' SUCTION DREDGER" },
+          48: { type: "equipment" },
+          56: { type: "equipment", name: "SELF PROPELLED CRANE BARGE" },
+        };
+
+        const updatedData = data.map((item: Fleet) => {
+          if (item.id !== undefined && changes[item.id]) {
+            return { ...item, ...changes[item.id] };
+          }
+          return item;
+        });
+
+        setFleetList(updatedData);
       } catch (err) {
         console.log(`Error fetching fleet data: ${err}`);
       } finally {
         setLoading(false);
       }
     };
+
     getData();
   }, []);
 

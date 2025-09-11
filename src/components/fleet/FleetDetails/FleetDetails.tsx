@@ -1,9 +1,8 @@
 "use client";
 
-import Button from "@/components/Button";
+import Image from "next/image";
 import { imageUrl } from "../../../../apiConfig";
 import { Fleet } from "../models/fleet.model";
-import Image from "next/image";
 
 const FleetDetails = ({
   id,
@@ -36,7 +35,9 @@ const FleetDetails = ({
         />
       </div>
       <div className="mb-5">
-        <h1 className="font-medium text-lg text-lightGray">Cargo Ship</h1>
+        <h1 className="font-medium text-lg text-lightGray">
+          {type.toUpperCase()}
+        </h1>
         <h1 className="font-bold text-xl leading-[100%] text-black">{name}</h1>
       </div>
       <div>
