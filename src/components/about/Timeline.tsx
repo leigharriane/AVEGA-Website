@@ -15,7 +15,7 @@ const timelineData = [
     year: 1981,
     title: "A Man with a Vision",
     description:
-      "The beginning of an extraordinary journey. A visionary leader emerges with bold ideas that would reshape the future, setting the foundation for decades of innovation and growth.",
+      "In a time when local producers struggled to expand their reach, one man imagined solutions. Where others saw closed doors, he saw open seas. With a clear vision, Alexander R. Vega Sr. founded Avega Shipping Services — a cargo brokerage that connects businesses with carriers they could rely on.",
     image: "/images/alexander-vega-sr.jpg",
     position: "top",
   },
@@ -23,7 +23,7 @@ const timelineData = [
     year: 1982,
     title: "A Father’s Vision, A Family’s Mission",
     description:
-      "Taking the first brave steps into uncharted territory. With courage and determination, new paths are forged through uncertainty, laying the groundwork for future breakthroughs.",
+      "It didn’t take long for his sons to steer their father’s vision into a family mission. Alec, the eldest was the first to step forward, soon joined by his brothers: Alison  and Alexander Jr. Together, they came up with resourceful strategies. Recognizing untapped potential in the idle vessels of smaller shipping firms, the brothers began chartering them, stepping in as shipping agents. This allowed them to offer reliable, flexible, and cost-efficient transport solutions, even competing with the biggest names in the industry.",
     image: "/images/vega-family.jpg",
     position: "bottom",
   },
@@ -31,7 +31,7 @@ const timelineData = [
     year: 1983,
     title: "Stepping Into the Unknown",
     description:
-      "Strategic alliances form the backbone of success. Strong partnerships are established, creating a network of trust and collaboration that would prove invaluable in the years to come.",
+      "Just two years after its founding, Avega was given an opportunity to rehabilitate and operate the  660-ton cargo vessel M/V Marcos Faberes for the Province of Batanes. It was an ambitious step for a young company, but one they embraced with urgency and precision.",
     image: "/images/vega-family.jpg",
     position: "top",
   },
@@ -39,7 +39,7 @@ const timelineData = [
     year: 1985,
     title: "Loss Beneath the Waves",
     description:
-      "Legacy takes shape as vision becomes mission. A father's dreams transform into a family's shared purpose, ensuring continuity and dedication across generations.",
+      "That bold beginning soon turned into heartbreak. Less than two years into its successful service, the M/V Marcos Faberes was caught in a  storm and sank beneath the waves. More than a vessel was lost. Onboard were two of their own: a brother and a cousin who never made it home. From that day forward, Avega committed to one thing: No success is worth more than the safety of their people.",
     image: "/images/vega-family.jpg",
     position: "bottom",
   },
@@ -47,7 +47,7 @@ const timelineData = [
     year: 1986,
     title: "Anchored in Partnership",
     description:
-      "Through adversity comes strength. Facing unexpected challenges and losses, resilience is tested and character is forged, ultimately leading to deeper wisdom and renewed purpose.",
+      "The loss of M/V Marcos Faberes was both financial and deeply personal. As Avega grieved two loved ones, they also faced their greatest business setback. But even in mourning, they chose to move forward. They entered negotiations with the Province of Batanes and helped co-acquire MV Lady Ivatan. In this chapter, they learned that credibility isn’t built on success alone. Sometimes, it’s shaped by how you rise after failure. It was their perseverance, humility, and quiet resolve that earned trust. And that, more than anything, made the partnership possible.",
     image: "/images/vega-family.jpg",
     position: "top",
   },
@@ -55,7 +55,39 @@ const timelineData = [
     year: 1995,
     title: "Passing the Wheel",
     description:
-      "Through adversity comes strength. Facing unexpected challenges and losses, resilience is tested and character is forged, ultimately leading to deeper wisdom and renewed purpose.",
+      "After 13 years of service, company founder Alexander Vega Sr., retired. As he stepped back, his sons were dedicated to carry forward the legacy he began. Entering a new chapter, the company was renamed from “Avega Shipping Services” to “Avega Bros. Integrated Shipping Corporation” “Bros.” honoring their brotherhood, while “Integrated” reflecting a broader goal: to offer a complete end-to-end cargo solution. ",
+    image: "/images/vega-family.jpg",
+    position: "bottom",
+  },
+  {
+    year: 2000,
+    title: "A Legacy Sets Sail",
+    description:
+      "Avega Bros. took its first step toward operational independence by investing in its own support fleet. The company acquired two barges: HB Julienne and HB Samantha, followed by three tugboats: MT Claudia, MT Nicole, and MT Alyanna. Named after the founders’ children and family members, each vessel became a symbol of the legacy they’re building for the next generation. This pivotal move allowed Avega to gain control over its port operations, streamline logistics, and reduce reliance on third-party service providers—laying the foundation for a self-sustaining future.",
+    image: "/images/vega-family.jpg",
+    position: "top",
+  },
+  {
+    year: 2009,
+    title: "Navigating Beyond Limits",
+    description:
+      "Avega Bros. marked a major milestone with the acquisition of its first cargo vessel, M/V Ligaya, followed by M/V Mark. Owning vessels gave the company greater control over shipment schedules and routes—breaking previous limitations and allowing for more flexible, client-focused operations. This new level of freedom opened doors to more opportunities and helped Avega earn the trust of a growing client base. ",
+    image: "/images/vega-family.jpg",
+    position: "bottom",
+  },
+  {
+    year: 2014,
+    title: "Carrying the Nation",
+    description:
+      "A major breakthrough came with securing a partnership with the National Food Authority (NFA), solidifying Avega's role as a key player in the Philippine shipping industry.",
+    image: "/images/vega-family.jpg",
+    position: "top",
+  },
+  {
+    year: 2020,
+    title: "A Legacy Reborn",
+    description:
+      "Today, Avega has expanded into a fleet of 60 ships and a workforce of over 1,000 employees, evolving into true movement makers who connect people, goods, and communities across the nation. It has also reached a long-awaited milestone with the passing of leadership to the third generation. Now entrusted with the company’s future, Avega Bros. embraces the responsibility to nurture and strengthen its roots. By integrating values with innovative ideas and a drive to adopt more modern, efficient, and forward-thinking systems, this new leadership is ensuring that the legacy grows deeper and broader for the future.",
     image: "/images/vega-family.jpg",
     position: "top",
   },
@@ -69,7 +101,9 @@ export default function Timeline() {
   const CARD_WIDTH = 400;
   const baseOffset = 40;
 
-  const topYears = [1981, 1983, 1985, 1987, 1995, 1997, 1999];
+  const topYears = [
+    1981, 1983, 1985, 1987, 1995, 2000, 2008, 2010, 2014, 2019, 2021,
+  ];
 
   const calculateCardPosition = (cardYear: number) => {
     const yearSpacing = CARD_WIDTH;
@@ -86,6 +120,14 @@ export default function Timeline() {
         return baseOffset + 2 * yearSpacing + yearSpacing / 2;
       case 1995:
         return baseOffset + 4 * yearSpacing;
+      case 2000:
+        return baseOffset + 5 * yearSpacing;
+      case 2009:
+        return baseOffset + 6 * yearSpacing + yearSpacing / 2;
+      case 2014:
+        return baseOffset + 8 * yearSpacing;
+      case 2020:
+        return baseOffset + 9 * yearSpacing + yearSpacing / 2;
       default:
         const minYear = topYears[0];
         const maxYear = topYears[topYears.length - 1];
@@ -242,7 +284,9 @@ export default function Timeline() {
 
     const cards = contentRef.current.querySelectorAll(".timeline-card");
 
-    cards.forEach((card) => {
+    cards.forEach((card, index) => {
+      if (index === cards.length - 1) return;
+
       gsap.fromTo(
         card,
         {
@@ -272,7 +316,10 @@ export default function Timeline() {
   }, []);
 
   return (
-    <div className="relative h-screen overflow-hidden" ref={scrollContainerRef}>
+    <div
+      className="relative h-[120vh] overflow-hidden"
+      ref={scrollContainerRef}
+    >
       <div
         ref={contentRef}
         className="relative"
@@ -333,7 +380,7 @@ export default function Timeline() {
             <div
               key={item.year}
               className={`timeline-card absolute cursor-pointer ${
-                item.position === "top" ? "top-[10%]" : "top-[50%]"
+                item.position === "top" ? "top-[10%]" : "top-[45%]"
               } transition-all duration-300 ease-out`}
               style={{
                 left: `${calculateCardPosition(item.year) + 10}px`,
@@ -369,7 +416,7 @@ export default function Timeline() {
                 <div
                   className={`px-2 md:px-5 pb-2 md:pb-5 transition-all duration-300 ease-out overflow-hidden ${
                     hoveredCard === index
-                      ? "pt-2 md:pt-5 max-h-32 opacity-100"
+                      ? "pt-2 md:pt-5 opacity-100"
                       : "max-h-0 opacity-0"
                   }`}
                 >
