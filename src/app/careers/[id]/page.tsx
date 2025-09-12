@@ -28,16 +28,17 @@ const Page = () => {
           <p className="font-medium text-lg text-lightGray">APPLY FOR</p>
           <h1 className="font-medium text-3xl">{application.position}</h1>
           <div className="font-medium text-base text-red flex gap-3">
-            <span>{application.location}</span> • <span>{application.category}</span>
+            <span>{application.location}</span> •{" "}
+            <span>{application.category}</span>
           </div>
         </div>
         <p className="font-medium text-base text-lightGray text-center">
-          We’re glad you’d like to be part of our team! <br /> Just fill out the
-          form below, and our HR team will be in touch.
+          We&apos;re glad you&apos;d like to be part of our team! <br /> Just
+          fill out the form below, and our HR team will be in touch.
         </p>
       </div>
       <div className="px-5 lg:px-20 flex flex-col">
-        <CareerForm data={application}/>
+        <CareerForm data={application} />
       </div>
       <div className="border-b border-lighterGray"></div>
     </div>

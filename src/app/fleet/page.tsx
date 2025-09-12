@@ -97,14 +97,14 @@ export default function FleetPage() {
       <div className="flex flex-col py-5 px-5 lg:px-20 mt-10">
         <RiseText
           text="Our Fleet"
-          className="font-medium text-3xl leading-[100%]"
+          className="font-medium text-3xl"
           start="top 80%"
           duration={1}
           stagger={0.02}
         />
         <RiseText
           text="A Diverse Fleet for Diverse Cargo Needs"
-          className="font-medium text-base text-lightGray leading-[100%]"
+          className="font-medium text-base text-lightGray"
           start="top 80%"
           duration={1}
           stagger={0.02}
@@ -117,7 +117,7 @@ export default function FleetPage() {
           <div className="w-full lg:max-w-[326px] lg:flex-shrink-0">
             <div className="border border-gray-200 shadow-sm rounded-md p-[32px] space-y-8">
               <div>
-                <h3 className="font-medium text-base mb-[12px] leading-[100%] text-lightGray">
+                <h3 className="font-medium text-base mb-[12px] text-lightGray">
                   Fleet Type
                 </h3>
                 <FleetTypeToggle
@@ -135,13 +135,13 @@ export default function FleetPage() {
                 />
               </div>
               <div className="my-[30px]">
-                <h3 className="font-medium text-base mb-[12px] leading-[100%] text-lightGray">
+                <h3 className="font-medium text-base mb-[12px] text-lightGray">
                   Gross Tonnage (GRT)
                 </h3>
                 <GRTSlider capacity={capacity} onChange={setCapacity} />
               </div>
               <div>
-                <h3 className="font-medium text-base mb-[12px] leading-[100%] text-lightGray">
+                <h3 className="font-medium text-base mb-[12px] text-lightGray">
                   Sort by GRT
                 </h3>
                 <GRTSortSelect value={sortBy} onChange={setSortBy} />
