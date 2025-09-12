@@ -190,7 +190,9 @@ export default function FleetPage() {
                             {ship.horsepower ? `Horsepower` : ""}
                           </p>
                           <p className="text-black text-base leading-[100%]">
-                            {ship.horsepower ? `${ship.horsepower} HP @${ship.rpm} RPM` : ""}
+                            {ship.horsepower
+                              ? `${ship.horsepower} HP @${ship.rpm} RPM`
+                              : ""}
                           </p>
                         </div>
                       </div>
