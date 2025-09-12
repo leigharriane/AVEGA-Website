@@ -6,7 +6,7 @@ import React from "react";
 const CareerPage = () => {
   return (
     <div className="flex flex-col gap-15 md:gap-20 my-20">
-      <div className="px-5 lg:px-20 flex flex-col pt-16.5">
+      <div className="px-5 lg:px-20 flex flex-col">
         <div className="flex flex-col">
           <RiseText
             text="Set Your Course for Your Next Destination"

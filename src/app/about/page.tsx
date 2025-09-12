@@ -8,12 +8,12 @@ import Image from "next/image";
 const AboutPage = () => {
   return (
     <div className="flex flex-col gap-15 md:gap-20 my-20">
-      <div className="px-5 lg:px-20 flex flex-col mt-16.5">
+      <div className="px-5 lg:px-20 flex flex-col mt-20">
         <div className="flex flex-col">
-          <h1 className="font-medium text-3xl text-center">
+          <h1 className="font-medium text-3xl leading-[100%] text-center">
             About Avega Bros. <br /> Integrated Shipping Corporation
           </h1>
-          <p className="font-medium text-base text-center text-lightGray mt-5">
+          <p className="font-medium text-base leading-[100%] text-center text-lightGray mt-5">
             With over 40 years of experience, Avega Bros. has been a trusted
             logistics partner <br /> delivering end-to-end shipping and cargo
             solutions across the Philippines.
