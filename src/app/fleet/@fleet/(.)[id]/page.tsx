@@ -2,7 +2,7 @@ import FleetDetails from "@/components/fleet/FleetDetails";
 import Modal from "@/components/fleet/Modal";
 import { Fleet } from "@/components/fleet/models/fleet.model";
 import { notFound } from "next/navigation";
-import { apiKey, apiUrl } from "../../../../../apiConfig";
+import { getFleetBySingleId } from "../../lib/fleet";
 
 interface FleetModalPageProps {
   params: {
@@ -12,12 +12,8 @@ interface FleetModalPageProps {
 
 const getFleetById = async (id: number): Promise<Fleet | null> => {
   try {
-    const response = await fetch(
-      `${apiUrl}/website/master-vessels/${id}?key=${apiKey}`
-    );
-    if (!response.ok) throw new Error("Failed to fetch fleet data");
-    const { data } = await response.json();
-    return data as Fleet;
+    const fleet = await getFleetBySingleId(id);
+    return fleet ?? null; 
   } catch (err) {
     console.error("Error fetching fleet:", err);
     return null;
@@ -33,21 +29,9 @@ const FleetModalPage = async ({ params }: FleetModalPageProps) => {
   }
 
   return (
-    <Modal>
-      <FleetDetails
-        id={fleet.id}
-        name={fleet.name}
-        type={fleet.type}
-        gross_tonnage={fleet.gross_tonnage}
-        photo_path={fleet.photo_path}
-        main_engine={fleet.main_engine}
-        model_serial_no={fleet.model_serial_no}
-        main_engine_rating={fleet.main_engine_rating}
-        phil_dwt={fleet.phil_dwt}
-        length_lbp={fleet.length_lbp}
-        length_loa={fleet.length_loa}
-      />
-    </Modal>
+      <Modal>
+        <FleetDetails fleet={fleet} />
+      </Modal>
   );
 };
 

@@ -9,10 +9,11 @@ import FleetSkeleton from "@/components/fleet/skeletons/FleetSkeleton";
 import RiseText from "@/components/RiseText";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { apiKey, apiUrl, imageUrl } from "../../../apiConfig";
-import Image from "next/image";
+import { imageUrl } from "../../../apiConfig";
+import { getModifiedFleets } from "./lib/fleet";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,18 +29,15 @@ export default function FleetPage() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(
-          `${apiUrl}/website/master-vessels?key=${apiKey}&limit=1000&stat=1`
-        );
-        if (!response.ok) throw new Error("Failed to fetch fleet data");
-        const { data } = await response.json();
-        setFleetList(data);
+        const fleets = await getModifiedFleets();
+        setFleetList(fleets);
       } catch (err) {
         console.log(`Error fetching fleet data: ${err}`);
       } finally {
         setLoading(false);
       }
     };
+
     getData();
   }, []);
 
@@ -96,7 +94,7 @@ export default function FleetPage() {
 
   return (
     <div className="flex flex-col my-20">
-      <div className="flex flex-col py-5 px-5 lg:px-20">
+      <div className="flex flex-col py-5 px-5 lg:px-20 mt-10">
         <RiseText
           text="Our Fleet"
           className="font-medium text-3xl leading-[100%]"
@@ -171,7 +169,11 @@ export default function FleetPage() {
                       <Image
                         width={1080}
                         height={1080}
-                        src={ship.image}
+                        src={
+                          ship.type == "equipment"
+                            ? String(ship.photo_path)
+                            : ship.image
+                        }
                         alt={ship.name}
                         className="w-full h-full object-cover rounded-md"
                       />
@@ -181,14 +183,29 @@ export default function FleetPage() {
                     <h3 className="font-bold text-base leading-[100%] mb-1">
                       {ship.name}
                     </h3>
-                    <div className="flex items-center justify-start gap-1">
-                      <p className="text-lightGray text-base leading-[100%]">
-                        GRT
-                      </p>
-                      <p className="text-black text-base leading-[100%]">
-                        {parseFloat(ship.gross_tonnage).toLocaleString()}
-                      </p>
-                    </div>
+                    {ship.type === "equipment" ? (
+                      <div>
+                        <div className="flex items-center justify-start gap-1">
+                          <p className="text-lightGray text-base leading-[100%]">
+                            {ship.horsepower ? `Horsepower` : ""}
+                          </p>
+                          <p className="text-black text-base leading-[100%]">
+                            {ship.horsepower
+                              ? `${ship.horsepower} HP @${ship.rpm} RPM`
+                              : ""}
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-start gap-1">
+                        <p className="text-lightGray text-base leading-[100%]">
+                          GRT
+                        </p>
+                        <p className="text-black text-base leading-[100%]">
+                          {parseFloat(ship.gross_tonnage).toLocaleString()}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

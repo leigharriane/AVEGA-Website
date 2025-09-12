@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  Close,
+  Content,
+  Overlay,
+  Portal,
+  Root,
+  Title,
+} from "@radix-ui/react-dialog";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
@@ -31,30 +39,30 @@ const Modal = ({ children }: ModalProps) => {
   };
 
   return (
-    <div
-      className={`absolute inset-0 z-50 flex items-baseline justify-center transition-opacity duration-200 ${
-        show ? "bg-black/70 opacity-100" : "bg-black/0 opacity-0"
-      }`}
-      onClick={handleOverlayClick}
-    >
-      <div
-        className={`bg-white rounded-lg shadow-lg w-11/12 max-w-xl relative transform transition-all duration-200 ${
-          show ? "opacity-100 scale-100" : "opacity-0 scale-95"
-        }`}
-        style={{ position: "fixed", top: "10vh" }}
-      >
-        <div className="flex justify-end py-[20px] px-[40px]">
-          <button
-            onClick={handleClose}
-            className="text-lighterGray hover:text-lightGray cursor-pointer"
-            aria-label="Close modal"
-          >
-            <CloseIcon />
-          </button>
-        </div>
-        {children}
-      </div>
-    </div>
+    <Root open defaultOpen>
+      <Portal>
+        <Overlay
+          onClick={handleOverlayClick}
+          className="fixed inset-0 bg-black opacity-50"
+        />
+        <Content className="fixed top-1/2 left-1/2 max-w-lg w-full bg-white rounded-md shadow-lg transform -translate-x-1/2 -translate-y-1/2 flex flex-col max-h-[85vh]">
+          <Title></Title>
+          <div className="p-4 flex justify-end">
+            <Close asChild>
+              <button
+                onClick={handleClose}
+                className="text-lighterGray hover:text-lightGray cursor-pointer"
+                aria-label="Close modal"
+              >
+                <CloseIcon />
+              </button>
+            </Close>
+          </div>
+          <div className="overflow-y-auto">{children}</div>
+          <div className="p-4"></div>
+        </Content>
+      </Portal>
+    </Root>
   );
 };
 
