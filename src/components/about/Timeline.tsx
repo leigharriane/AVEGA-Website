@@ -290,12 +290,10 @@ export default function Timeline() {
       gsap.fromTo(
         card,
         {
-          opacity: 0,
           y: 100,
           scale: 0.8,
         },
         {
-          opacity: 1,
           y: 0,
           scale: 1,
           duration: 1,
