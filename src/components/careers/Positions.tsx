@@ -10,21 +10,33 @@ import PlusIcon from "../../../public/icons/Plus";
 
 const Positions = () => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
-  const [activeFilters, setActiveFilters] = useState<string[]>(["Sea-Based"]);
+  const [activeFilters, setActiveFilters] = useState<string[]>(["All"]);
 
   const filterOptions = [
+    { label: "All", value: "All", color: "bg-gray-200" },
     { label: "Sea-Based Careers", value: "Sea-Based", color: "bg-red-500" },
     { label: "Land-Based Careers", value: "Land-Based", color: "bg-red-200" },
     { label: "Cebu, Philippines", value: "Cebu", color: "bg-gray-200" },
     { label: "Manila, Philippines", value: "Manila", color: "bg-gray-200" },
   ];
 
-  const toggleFilter = (filterValue: string) => {
-    setActiveFilters((prev) =>
-      prev.includes(filterValue)
-        ? prev.filter((f) => f !== filterValue)
-        : [...prev, filterValue]
-    );
+  const toggleFilter = (value: string) => {
+    setActiveFilters((prev) => {
+      const isAll = value === "All";
+      const hasAll = prev.includes("All");
+
+      if (isAll) {
+        if (hasAll && prev.length === 1) return ["Sea-Based"];
+        return ["All"];
+      }
+
+      const base = prev.filter((f) => f !== "All");
+      const next = base.includes(value)
+        ? base.filter((f) => f !== value)
+        : [...base, value];
+
+      return next.length ? next : ["All"];
+    });
   };
 
   const toggleRow = (id: number) => {
@@ -32,13 +44,16 @@ const Positions = () => {
   };
 
   const filteredApplications = applications.filter((app) => {
-    if (activeFilters.length === 0) return true;
+    if (activeFilters.length === 0) return false;
     return activeFilters.some((filter) => {
       if (filter === "Sea-Based" || filter === "Land-Based") {
         return app.category === filter;
       }
       if (filter === "Cebu" || filter === "Manila") {
         return app.location.includes(filter);
+      }
+      if (filter === "All") {
+        return true;
       }
       return false;
     });
@@ -60,7 +75,11 @@ const Positions = () => {
                   : "bg-lightestGray text-lightGray"
               }`}
             >
-              {activeFilters.includes(filter.value) ? <CheckIcon /> : <PlusIcon />}
+              {activeFilters.includes(filter.value) ? (
+                <CheckIcon />
+              ) : (
+                <PlusIcon />
+              )}
               {filter.label}
             </button>
           ))}
@@ -87,19 +106,27 @@ const Positions = () => {
             onClick={() => toggleRow(app.id)}
           >
             <div className="font-medium text-black text-base">
-              <span className="md:hidden font-semibold text-lightGray block">Position:</span>
+              <span className="md:hidden font-semibold text-lightGray block">
+                Position:
+              </span>
               {app.position}
             </div>
             <div className="font-medium text-black text-base">
-              <span className="md:hidden font-semibold text-lightGray block">Location:</span>
+              <span className="md:hidden font-semibold text-lightGray block">
+                Location:
+              </span>
               {app.location}
             </div>
             <div className="font-medium text-black text-base">
-              <span className="md:hidden font-semibold text-lightGray block">Type:</span>
+              <span className="md:hidden font-semibold text-lightGray block">
+                Type:
+              </span>
               {app.type}
             </div>
             <div className="font-medium text-black text-base">
-              <span className="md:hidden font-semibold text-lightGray block">Category:</span>
+              <span className="md:hidden font-semibold text-lightGray block">
+                Category:
+              </span>
               {app.category}
             </div>
             <div className="flex justify-end items-center">
@@ -126,7 +153,8 @@ const Positions = () => {
                     WebkitBackgroundClip: "text",
                     color: "transparent",
                     borderBottom: "2px solid",
-                    borderImage: "linear-gradient(to right, #A30101, #FF0000) 1",
+                    borderImage:
+                      "linear-gradient(to right, #A30101, #FF0000) 1",
                     paddingBottom: "2px",
                   }}
                 >
