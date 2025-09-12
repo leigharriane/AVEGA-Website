@@ -47,9 +47,7 @@ const Page = async ({ params }: FleetPageProps) => {
           {fleet.name}
         </h1>
       </div>
-      {fleet.type === "equipment" ? (
-        <div></div>
-      ) : (
+      {fleet.type !== "equipment" ? (
         <div>
           <table className="w-full border border-lighterGray">
             <tbody>
@@ -121,6 +119,194 @@ const Page = async ({ params }: FleetPageProps) => {
                   {fleet.length_loa}
                 </td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div>
+          <table className="w-full border border-lighterGray">
+            <tbody>
+              {fleet.model_serial_no && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Model
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.model_serial_no}
+                  </td>
+                </tr>
+              )}
+              {fleet.unit_serial_no !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Unit Serial No
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.unit_serial_no}
+                  </td>
+                </tr>
+              )}
+              {fleet.main_engine && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Engine
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.main_engine}
+                  </td>
+                </tr>
+              )}
+              {fleet.horsepower && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Horsepower
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.horsepower} HP
+                  </td>
+                </tr>
+              )}
+              {fleet.rpm !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    RPM
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    @ {fleet.rpm} RPM
+                  </td>
+                </tr>
+              )}
+              {fleet.hydraulic && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Hydraulic
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.hydraulic}
+                  </td>
+                </tr>
+              )}
+              {fleet.hydraulic_system && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Hydraulic System
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.hydraulic_system}
+                  </td>
+                </tr>
+              )}
+              {fleet.fuel_tank !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Fuel Tank Capacity
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.fuel_tank} L.
+                  </td>
+                </tr>
+              )}
+              {fleet.lube_oil_engine !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Lube Oil Engine
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.lube_oil_engine} L.
+                  </td>
+                </tr>
+              )}
+
+              {fleet.hydraulic_tank !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Hydraulic Tank
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.hydraulic_tank} L.
+                  </td>
+                </tr>
+              )}
+              {fleet.operating_weight !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Operating Weight
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.operating_weight?.toLocaleString()} kg.
+                  </td>
+                </tr>
+              )}
+              {fleet.bucket_capacity !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Bucket Capacity
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.bucket_capacity} cbm
+                  </td>
+                </tr>
+              )}
+              {fleet.max_digging_height !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Max Digging Height
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.max_digging_height} mm
+                  </td>
+                </tr>
+              )}
+              {fleet.max_digging_reach !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Max Digging Reach
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.max_digging_reach} mm
+                  </td>
+                </tr>
+              )}
+              {fleet.max_digging_depth !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Max Digging Depth
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.max_digging_depth} mm
+                  </td>
+                </tr>
+              )}
+              {fleet.overall_length !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Overall Length
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.overall_length} mm
+                  </td>
+                </tr>
+              )}
+              {fleet.overall_width !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Overall Width
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.overall_width} mm
+                  </td>
+                </tr>
+              )}
+              {fleet.overall_height_cab !== undefined && (
+                <tr>
+                  <td className="text-left text-sm font-semibold text-black border border-lighterGray px-2.5 py-2">
+                    Overall Height (Cab)
+                  </td>
+                  <td className="text-center text-sm font-medium text-black border border-lighterGray px-2.5 py-2">
+                    {fleet.overall_height_cab} mm
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

@@ -94,7 +94,7 @@ export default function FleetPage() {
 
   return (
     <div className="flex flex-col my-20">
-      <div className="flex flex-col py-5 px-5 lg:px-20">
+      <div className="flex flex-col py-5 px-5 lg:px-20 mt-10">
         <RiseText
           text="Our Fleet"
           className="font-medium text-3xl leading-[100%]"
@@ -185,7 +185,14 @@ export default function FleetPage() {
                     </h3>
                     {ship.type === "equipment" ? (
                       <div>
-                        
+                        <div className="flex items-center justify-start gap-1">
+                          <p className="text-lightGray text-base leading-[100%]">
+                            {ship.horsepower ? `Horsepower` : ""}
+                          </p>
+                          <p className="text-black text-base leading-[100%]">
+                            {ship.horsepower ? `${ship.horsepower} HP @${ship.rpm} RPM` : ""}
+                          </p>
+                        </div>
                       </div>
                     ) : (
                       <div className="flex items-center justify-start gap-1">

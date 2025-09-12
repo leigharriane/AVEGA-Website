@@ -29,22 +29,9 @@ const FleetModalPage = async ({ params }: FleetModalPageProps) => {
   }
 
   return (
-    <Modal>
-      <FleetDetails
-        id={fleet.id}
-        name={fleet.name}
-        type={fleet.type}
-        gross_tonnage={fleet.gross_tonnage}
-        photo_path={fleet.photo_path}
-        main_engine={fleet.main_engine}
-        model_serial_no={fleet.model_serial_no}
-        main_engine_rating={fleet.main_engine_rating}
-        phil_dwt={fleet.phil_dwt}
-        length_lbp={fleet.length_lbp}
-        length_loa={fleet.length_loa}
-        horsepower={fleet.horsepower}
-      />
-    </Modal>
+      <Modal>
+        <FleetDetails fleet={fleet} />
+      </Modal>
   );
 };
 
