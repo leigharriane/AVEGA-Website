@@ -10,7 +10,7 @@ const steps = [
     title: "First Generation",
     images: [
       {
-        photo: "/images/alexander-vega-sr.jpg",
+        photo: "/images/teams/alexander-vega-sr.jpg",
         name: "Alexander R. Vega Sr.",
         position: "Founder",
       },
@@ -21,23 +21,23 @@ const steps = [
     title: "Second Generation",
     images: [
       {
-        photo: "/images/trucking.png",
+        photo: "/images/teams/alec-vega.png",
         name: "Alec N. Vega",
         position: "Chairman of the Board",
       },
       {
-        photo: "/images/trucking.png",
+        photo: "/images/teams/alexander-vega-jr.png",
         name: "Alexander N. Vega Jr.",
         position: "Vice Chairman",
       },
       {
-        photo: "/images/trucking.png",
+        photo: "/images/teams/alison-vega.png",
         name: "Alison N. Vega",
         position: "President and CEO",
       },
       {
-        photo: "/images/trucking.png",
-        name: "Joel  Hechanova",
+        photo: "/images/teams/joel-hechanova.png",
+        name: "Joel S. Hechanova",
         position: "Vice President Engineer",
       },
     ],
@@ -47,22 +47,22 @@ const steps = [
     title: "Third Generation",
     images: [
       {
-        photo: "/images/trucking.png",
-        name: "Stephen Vega",
+        photo: "/images/teams/stephen-alexander-vega.png",
+        name: "Stephen Alexander P. Vega",
         position: "COO External",
       },
       {
-        photo: "/images/trucking.png",
+        photo: "/images/teams/alec-daniel-sandy-vega.png",
         name: "Alec Daniel Sandy J. Vega",
         position: "COO Internal",
       },
       {
-        photo: "/images/trucking.png",
+        photo: "/images/teams/christian-adrian-vega.png",
         name: "Christian Adrian J.  Vega",
         position: "Supply Chain Manager",
       },
       {
-        photo: "/images/trucking.png",
+        photo: "/images/teams/samantha-alec-vega.png",
         name: "Samantha Alec G. Vega",
         position: "Business Analyst",
       },
@@ -289,10 +289,10 @@ const Team = () => {
         </div>
       </div>
 
-      <div>
+      <div className="w-full px-0 mx-0">
         <div
           ref={contentRef}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 w-full"
         >
           {steps[currentStep].images.length < 4 &&
             Array.from({ length: 4 - steps[currentStep].images.length }).map(
@@ -301,7 +301,7 @@ const Team = () => {
 
           {steps[currentStep].images.map((item, e) => (
             <div key={e} className="w-full flex flex-col gap-5">
-              <div className="w-full aspect-[4/3] relative">
+              <div className="w-full h-[510px] relative">
                 <Image
                   src={item.photo}
                   alt={steps[currentStep].title}
